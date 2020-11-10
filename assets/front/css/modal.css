@@ -1,0 +1,115 @@
+.cta .cta-title {
+  margin: 0;
+  font-size: 20px;
+}
+
+
+.modal {
+    text-align: center;
+  }
+  
+  @media screen and (min-width: 768px) { 
+    .modal:before {
+      display: inline-block;
+      vertical-align: middle;
+      content: " ";
+      height: 100%;
+    }
+  }
+  
+  .modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  .bold {
+		font-weight: bold;
+	}
+
+  .hid {
+    display: none;
+  }
+
+  .sho {
+    display: inline;
+  }
+
+  .top-estadisticas {
+    padding: 30px 0;
+  }
+
+  .more-info {
+    border-radius: 100%;
+    width: 4rem;
+    height: 4rem;
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 10px;
+    align-items: center;
+    justify-content: center;
+    display: inline-flex;
+  }
+
+  tfoot {
+    background: #0c8147;
+    color: #ffff;
+  }
+
+  tfoot > tr > th {
+    vertical-align: middle !important;
+  }
+
+  .table > tbody > tr > td {
+    vertical-align: middle !important;
+  }
+
+  thead {
+    background: #0c8147;
+    color: #ffff;
+  }
+
+  thead > tr > th {
+    vertical-align: middle !important;
+  }
+
+  .table > tbody > tr > td {
+    vertical-align: middle !important;
+  }
+
+  .dataTables_wrapper .dataTables_paginate .paginate_button:active {
+ 
+    background-color: #0c8147 !important; 
+    background: -webkit-gradient(#0c8147) !important; 
+    background: -webkit-linear-gradient(#0c8147) !important;
+    background: -moz-linear-gradient(#0c8147) !important;
+    background: -ms-linear-gradient(#0c8147) !important;
+    background: -o-linear-gradient(#0c8147) !important;
+    background: #0c8147 !important;
+    box-shadow: inset 0 0 0 #0c8147 !important;
+    background: linear-gradient(#0c8147) !important;
+
+    background-color: #0c8147;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #0c8147), color-stop(100%, #0c8147));
+    background: -webkit-linear-gradient(top, #0c8147 0%, #0c8147 100%);
+    background: -moz-linear-gradient(top, #0c8147 0%, #0c8147 100%);
+    background: -ms-linear-gradient(top, #0c8147 0%, #0c8147 100%);
+    background: -o-linear-gradient(top, #0c8147 0%, #0c8147 100%);
+    background: linear-gradient(to bottom, #0c8147 0%, #0c8147 100%);
+ 
+}
+
+
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+ 
+    background-color: #0c8147 !important; 
+    background: -webkit-gradient(#0c8147) !important;
+    background: -webkit-linear-gradient(#0c8147) !important; 
+    background: -moz-linear-gradient(#0c8147) !important;
+    background: -ms-linear-gradient(#0c8147) !important;
+    background: -o-linear-gradient(#0c8147) !important;
+    background-color: #0c8147 !important;
+    border: none !important;
+    background: linear-gradient(#0c8147) !important; 
+}

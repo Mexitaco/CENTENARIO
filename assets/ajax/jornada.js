@@ -51,11 +51,6 @@ $(document).ready(function () {
         return;
     }
 
-    $.extend($.fn.dataTableExt.oStdClasses, {
-        "sFilterInput": "form-control",
-        "sLengthSelect": "form-control"
-    });
-
     // tablaUsuarios ES EL ID DE LA TABLA A LA QUE LE METEREMOS TODA LA INFORMACIÓN
     // arregloDT TIENE LA INFORMACIÓN QUE QUEREMOS MOSTRAR
     table = $('#tablaJornada').DataTable({

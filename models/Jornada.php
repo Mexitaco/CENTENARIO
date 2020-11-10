@@ -229,7 +229,7 @@ class Jornada
         return $resultados;
 	}
 
-	public static function obtenerEquipos(){
+	private static function obtenerEquipos(){
         $conexion = new Conexion();
         $sql = "SELECT id FROM equipos";
             
@@ -305,8 +305,6 @@ class Jornada
 
 				$numCancha++;
 				
-
-
 				$this->setEquipo_local($uno[$combinacion[$i][$j]]);
 				$this->setEquipo_visitante($uno[$combinacion[$i][$j + 1]]);
 				$this->setNum_jornada($jornada);
@@ -320,11 +318,11 @@ class Jornada
 		}
 	}
 
-	public function insertarJornada() {
+	private function insertarJornada() {
 		$conexion = new Conexion();
 
         try{
-            $sql = "CALL Insert_jornada4(
+            $sql = "CALL Insert_jornada(
 				".$this->getEquipo_local().",
 				".$this->getEquipo_visitante().",
 				".$this->getNum_jornada().",
@@ -332,14 +330,31 @@ class Jornada
 				'".$this->getCancha()."'
 			);";
 
-			echo $sql;
+/*
+				:local,
+				:visitante,
+				:numJornada,
+				:horario,
+				:cancha
+			);";
+*/
+
+			/*
+			".$this->getEquipo_local().",
+				".$this->getEquipo_visitante().",
+				".$this->getNum_jornada().",
+				'".$this->getHorario()."',
+				'".$this->getCancha()."'
+			*/
+
+			//echo $sql;
 
             $query = $conexion->prepare($sql);
-            //$query->bindValue(":local", $this->getEquipo_local());
-            //$query->bindValue(":visitante", $this->getEquipo_visitante());
-			//$query->bindValue(":numJornada", $this->getNum_jornada());
-			//$query->bindValue(":horario", $this->getHorario());
-			//$query->bindValue(":cancha", $this->getCancha());
+            // $query->bindValue(":local", $this->getEquipo_local());
+            // $query->bindValue(":visitante", $this->getEquipo_visitante());
+			// $query->bindValue(":numJornada", $this->getNum_jornada());
+			// $query->bindValue(":horario", $this->getHorario());
+			// $query->bindValue(":cancha", $this->getCancha());
 
 			// echo $this->getEquipo_local();
 			// echo '<br>';
@@ -354,11 +369,11 @@ class Jornada
 
             $query->execute();
 
-          //  return ["success" => true, "message" => "todo perfecto"];
+          return ["success" => true, "message" => "todo perfecto"];
 
         } catch (Exception $e){
-            // return ["success" => false, "message" => "Ocurrió un error inesperado al insertar los datos",
-            //       "error" => $e->getMessage(), "exception" => json_encode($e)];
+            return ["success" => false, "message" => "Ocurrió un error inesperado al insertar los datos",
+                   "error" => $e->getMessage(), "exception" => json_encode($e)];
         }
 	}
 	

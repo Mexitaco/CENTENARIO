@@ -112,7 +112,7 @@ $(document).on("click", ".enviarTodo", function (e) {
                     icon: 'success',
                     message: response.message
                 }).then(() => {
-                    location.href = "conJornada.php";
+                    location.href = "conJor.php";
                 });
             }
             else {

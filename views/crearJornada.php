@@ -22,8 +22,6 @@
 		include "components/css.html";   //CARGAR LOS CSS
 	?>
 
-	<script src="../assets/ajax/jornada.js"></script>
-
 </head>
 <body>
 
@@ -56,9 +54,9 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12">
-					<form action="" class="form-jornada">
-						<input type="text" name="jornada" value="jornada" style="display: none;">
-						<button class="btn btn-primary btn-lg">Crear Jornada</button>
+					<form class="form-jornada">
+						<input type="text" class="form-control" name="jornada" value="jornada" style="display: none;">
+						<button type="submit" class="btn btn-primary btn-lg">Crear Jornada</button>
 					</form>
 				</div>
 			</div>
@@ -69,6 +67,6 @@
 <?php
 	include_once "components/footer.php"; //IMPRIMIR FOOTER
 ?>
-
+<script src="../assets/ajax/jornada.js"></script>
 </body>
 </html>

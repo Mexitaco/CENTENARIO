@@ -15,10 +15,8 @@ else if(isset($_GET["crear-jornada"])) {
     
     if(isset($_POST["jornada"]) && $_POST["jornada"] != ""){
 
-       $jornada->crearJornada();        
-
-         //echo json_encode(["success" => true, "message" => "todo perfecto"]);
-       //  echo json_encode($response);
+        $jornada->crearJornada();        
+        
     
     }
     else{

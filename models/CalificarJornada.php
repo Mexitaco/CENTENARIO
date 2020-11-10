@@ -4,7 +4,7 @@ include_once "../conexion/Conexion.php";
 include_once "Jornada.php";
 include_once "Integrante.php";
 
-class CalificarJornada
+class CalificarJornada 
 {
 
     public function partido($id){
@@ -65,43 +65,43 @@ class CalificarJornada
 		try {
 
 		$sql = "
-        CALL actualiza_partido4(
+        CALL actualiza_partido_id_jornada(
             :idLocal,
             :idVisitante,
             :golesLocal,
             :golesVisitante,
             :tarAmaVisitante,
             :tarAmaLocal,
-            :tarRojVisitante
+            :tarRojVisitante,
             :tarRojLocal,
             :idJornada
-        )";
+        );";
 
-            echo         $idLocal.', '.
-            $idVisitante.', '.
-            $golesLocal.', '.
-            $golesVisitante.', '.
-            $tarAmaVisitante.', '.
-            $tarAmaLocal.', '.
-            $tarRojVisitante.', '.
-            $tarRojLocal.', '.
-            $idJornada;
+            // echo         $idLocal.', '.
+            // $idVisitante.', '.
+            // $golesLocal.', '.
+            // $golesVisitante.', '.
+            // $tarAmaVisitante.', '.
+            // $tarAmaLocal.', '.
+            // $tarRojVisitante.', '.
+            // $tarRojLocal.', '.
+            // $idJornada;
 
 		$query = $conexion->prepare($sql);
 		
-        $query->bindValue(":idLocal", $idLocal);
-        $query->bindValue(":idVisitante", $idVisitante);
-        $query->bindValue(":golesLocal", $golesLocal);
-        $query->bindValue(":golesVisitante", $golesVisitante);
-        $query->bindValue(":tarAmaVisitante", $tarAmaVisitante);
-        $query->bindValue(":tarAmaLocal", $tarAmaLocal);
-        $query->bindValue(":tarRojVisitante", $tarRojVisitante);
-        $query->bindValue(":tarRojLocal", $tarRojLocal);
-        $query->bindValue(":idJornada", $idJornada);
+        $query->bindParam(":idLocal", $idLocal, PDO::PARAM_INT);
+        $query->bindParam(":idVisitante", $idVisitante, PDO::PARAM_INT);
+        $query->bindParam(":golesLocal", $golesLocal, PDO::PARAM_INT);
+        $query->bindParam(":golesVisitante", $golesVisitante, PDO::PARAM_INT);
+        $query->bindParam(":tarAmaVisitante", $tarAmaVisitante, PDO::PARAM_INT);
+        $query->bindParam(":tarAmaLocal", $tarAmaLocal, PDO::PARAM_INT);
+        $query->bindParam(":tarRojVisitante", $tarRojVisitante, PDO::PARAM_INT);
+        $query->bindParam(":tarRojLocal", $tarRojLocal, PDO::PARAM_INT);
+        $query->bindParam(":idJornada", $idJornada, PDO::PARAM_INT);
         
 		$query->execute();
 
-		return ["success" => true, "message" => "todo perfecto"];
+		return ["success" => true, "message" => "funciona chido"];
       	
 		} catch (Exception $e) {
 		 	return ["success" => false, "message" => "Ocurrió un error inesperado al insertar los datos",

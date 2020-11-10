@@ -55,9 +55,9 @@
             </li>
             <li><a href="estadisticas.php">Estadísticas</a></li>
             <li><a href="conEquipo.php">Equipo</a></li>
-            <li><a href="plaJor.php">Jornada</a>
+            <li><a href="conJor.php">Jornada</a>
                 <ul>
-                    <li><a href="plaJor.php">Consultar Jornada</a></li>
+                    <li><a href="conJor.php">Consultar Jornada</a></li>
                     <li><a href="crearJornada.php">Crear Jornada</a></li>
                 </ul>
             </li>

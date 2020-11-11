@@ -81,7 +81,12 @@
 	}
 </style>
 
-<body>	
+<body>
+
+<?php
+	include_once "components/loader.html";
+?>
+
 <div class="login">
 	<div class="fondo"><div class="filtro"><h1>Centenario</h1></div></div>
 	<div class="login-form">
@@ -104,5 +109,7 @@
 		</form>
 	</div>	
 </div>
+<script src="../assets/front/js/jquery-1.10.2.min.js"></script>
+<script src="../assets/front/js/loader.js"></script>
 </body>
 </html>

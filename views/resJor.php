@@ -38,6 +38,7 @@
 
 <?php
 	include_once "components/nav.php"; //IMPRIMIR NAVEGADOR
+	include_once "components/loader.html";
 ?>
 
 <main>

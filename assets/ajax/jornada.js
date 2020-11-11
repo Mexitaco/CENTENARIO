@@ -15,7 +15,7 @@ $(".form-jornada").submit(function (e) {
         confirmButtonText: 'Aceptar',
         cancelButtonText: 'Cancelar',
     }).then(function () {
-
+        loader(true);
         $.ajax({
             url: "../controllers/JornadaController.php?crear-jornada=true",
             data: data,
@@ -25,7 +25,7 @@ $(".form-jornada").submit(function (e) {
             type: 'POST',
             dataType: 'json',
             success: function (response) {
-
+                loader(false);
                 if (response.success) {
                     swal({
                         title: "Operación exitosa",
@@ -39,6 +39,10 @@ $(".form-jornada").submit(function (e) {
                 else {
                     swal(response.message, "", "info");
                 }
+            },
+            error: function (request, msg, error) {
+                loader(false);
+                swal('Error', 'Ocurrió un error insesperado', 'error');
             }
         });
     });

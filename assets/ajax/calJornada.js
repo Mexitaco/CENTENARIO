@@ -95,6 +95,8 @@ $(document).on("click", ".enviarTodo", function (e) {
     var formJornada = $(".form-calificar-jornada");
     var cali = new FormData(formJornada[0]);
 
+    loader(true);
+
     jQuery.ajax({
         url: '../controllers/CalificarJornadaController.php?save-caljor=true',
         data: cali,
@@ -104,7 +106,7 @@ $(document).on("click", ".enviarTodo", function (e) {
         type: 'POST',
         dataType: 'json',
         success: function (response) {
-
+            loader(false);
             if (response.success) {
                 swal({
                     title: "Operación exitosa",
@@ -120,6 +122,7 @@ $(document).on("click", ".enviarTodo", function (e) {
             }
         },
         error: function () {
+            loader(false);
             swal("Por favor ingrese valores mayor a 1", "", "error");
         }
     });

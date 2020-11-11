@@ -1,7 +1,9 @@
 $(function () {
     $(".formlogin").submit(function(e) {
         e.preventDefault();
-        
+
+        loader(true);
+
         var form = $(".formlogin");
         var data = new FormData(form[0]);
         
@@ -14,7 +16,7 @@ $(function () {
             type: 'POST',
             dataType: 'json',
             success: function (response) {
-                
+                loader(false);
                 if(response.success){
                     location.href = "index.php";
                 }
@@ -26,6 +28,9 @@ $(function () {
                         icon: 'error'
                     })
                 }
+            },
+            complete: function (response) {
+                loader(false);
             }
         });
     });

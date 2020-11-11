@@ -23,6 +23,8 @@ $(function () {
         var form = $(".form-pagos");
         var data = new FormData(form[0]);
 
+        loader(true);
+
         jQuery.ajax({
             url: '../controllers/PagosController.php?save-pagos=true',
             data: data,
@@ -32,7 +34,7 @@ $(function () {
             type: 'POST',
             dataType: 'json',
             success: function (response) {
-                
+                loader(false);
                 if(response.success){
                     swal({
                         title: "Operación exitosa",
@@ -48,7 +50,8 @@ $(function () {
                 }
             },
              error: function () {
-                 swal("Por favor ingrese un valor mayor a 1", "", "error");
+                loader(false);
+                swal("Por favor ingrese un valor mayor a 1", "", "error");
              }
         });
     });

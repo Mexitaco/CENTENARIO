@@ -257,6 +257,7 @@ class Jornada
 		$numHorario = 0;
 
 		$uno = $array;
+		$response;
 
 		$horario = array(
 			'11:00',
@@ -310,12 +311,18 @@ class Jornada
 				$this->setNum_jornada($jornada);
 				$this->setHorario($horario[$numHorario]);
 				$this->setCancha('Cancha '.$numCancha);
-				
-				$this->insertarJornada();
+
+				$response = $this->insertarJornada();
 				
 				$numHorario++;
 			}
 		}
+
+		if ($response != null) {
+			return $response;
+		}
+
+		return null;
 	}
 
 	private function insertarJornada() {
@@ -323,53 +330,24 @@ class Jornada
 
         try{
             $sql = "CALL Insert_jornada(
-				".$this->getEquipo_local().",
-				".$this->getEquipo_visitante().",
-				".$this->getNum_jornada().",
-				'".$this->getHorario()."',
-				'".$this->getCancha()."'
-			);";
-
-/*
 				:local,
 				:visitante,
 				:numJornada,
 				:horario,
 				:cancha
 			);";
-*/
 
-			/*
-			".$this->getEquipo_local().",
-				".$this->getEquipo_visitante().",
-				".$this->getNum_jornada().",
-				'".$this->getHorario()."',
-				'".$this->getCancha()."'
-			*/
-
-			//echo $sql;
-
-            $query = $conexion->prepare($sql);
-            // $query->bindValue(":local", $this->getEquipo_local());
-            // $query->bindValue(":visitante", $this->getEquipo_visitante());
-			// $query->bindValue(":numJornada", $this->getNum_jornada());
-			// $query->bindValue(":horario", $this->getHorario());
-			// $query->bindValue(":cancha", $this->getCancha());
-
-			// echo $this->getEquipo_local();
-			// echo '<br>';
-			// echo $this->getEquipo_visitante();
-			// echo '<br>';
-			// echo $this->getNum_jornada();
-			// echo '<br>';
-			// echo $this->getHorario();
-			// echo '<br>';
-			// echo $this->getCancha();
-			// echo '<br>';
+			$query = $conexion->prepare($sql);
+			
+            $query->bindValue(":local", $this->getEquipo_local(), PDO::PARAM_INT);
+            $query->bindValue(":visitante", $this->getEquipo_visitante(), PDO::PARAM_INT);
+			$query->bindValue(":numJornada", $this->getNum_jornada(), PDO::PARAM_INT);
+			$query->bindValue(":horario", $this->getHorario(), PDO::PARAM_STR);
+			$query->bindValue(":cancha", $this->getCancha(), PDO::PARAM_STR);
 
             $query->execute();
 
-          return ["success" => true, "message" => "todo perfecto"];
+          return ["success" => true, "message" => "Jornada creadas"];
 
         } catch (Exception $e){
             return ["success" => false, "message" => "Ocurrió un error inesperado al insertar los datos",

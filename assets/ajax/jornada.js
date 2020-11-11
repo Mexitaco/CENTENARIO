@@ -10,10 +10,6 @@ $(".form-jornada").submit(function (e) {
         title: 'Reiniciar Liga',
         text: '¿Realmente deseas crear las nuevas jornadas?',
         icon: 'warning',
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Aceptar',
-        cancelButtonText: 'Cancelar',
     }).then(function () {
         loader(true);
         $.ajax({
@@ -29,20 +25,25 @@ $(".form-jornada").submit(function (e) {
                 if (response.success) {
                     swal({
                         title: "Operación exitosa",
-                        type: 'success',
                         icon: 'success',
                         message: response.message
                     }).then(() => {
-                        location.href = "conJornada.php";
+                        location.href = "conJor.php";
                     });
-                }
-                else {
-                    swal(response.message, "", "info");
+                } else {
+                    console.log('hola');
                 }
             },
-            error: function (request, msg, error) {
+            error: function (response) {
                 loader(false);
-                swal('Error', 'Ocurrió un error insesperado', 'error');
+                console.log(response.responseJSON.message);
+                if (response.error) {
+                    swal({
+                        title: "Error",
+                        icon: 'error',
+                        text: response.responseJSON.message
+                    });
+                }
             }
         });
     });

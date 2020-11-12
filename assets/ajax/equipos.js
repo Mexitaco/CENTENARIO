@@ -62,8 +62,13 @@ $(document).ready(function(){
 
 $(document).ready(function(){
 
-    // tablaUsuarios ES EL ID DE LA TABLA A LA QUE LE METEREMOS TODA LA INFORMACIÓN
-    // arregloDT TIENE LA INFORMACIÓN QUE QUEREMOS MOSTRAR
+    var section = $(".posiciones-consulta");
+    if (section.get(0) == null) {
+        return;
+    }
+
+    var t = 'Tabla de posiciones';
+
     table = $('#tablaPosiciones').DataTable( {
         "data": arregloDT,
         "pageLength": 100,
@@ -88,7 +93,23 @@ $(document).ready(function(){
             },
         },
         "order": [[ 0, "asc" ]],
-        responsive: true
+        responsive: true,
+        dom: '<"col-xs-3"l><"col-xs-5"B><"col-xs-4"f>rtip',
+        buttons: [
+            {
+                extend: 'print',
+                title: t
+            },
+            {
+                extend: 'pdf',
+                title: t
+            },
+            {
+                extend: 'excel',
+                title: t
+            }
+        ]
+
     });
     
 });

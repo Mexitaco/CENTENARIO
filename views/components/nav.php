@@ -1,13 +1,17 @@
 <header class="site-header clearfix">
     <div class="container">
         <div class="row">
+            <div class="logo">
+                <a href="index.php">
+                    <img src="../assets/front/images/logo.png" width="40%" height="80px" alt="">
+                </a>
+            </div>	<!-- /.logo -->
             <div class="col-md-12">
-                <div class="pull-left logo">
-                    <a href="index.php">
-                    <p>CENTENARIO</p>
-                    </a>
-                </div>	<!-- /.logo -->
-                <div class="main-navigation pull-right">
+                <div class="main-navigation pull-right" style="display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 80px;"
+                >
                     <nav class="main-nav visible-md visible-lg">
                         <ul class="sf-menu">
                             <li><a href="index.php">Inicio</a></li>

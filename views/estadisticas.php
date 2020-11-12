@@ -43,7 +43,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="cta-title"><strong>Estadísticas de las Ligas</strong></h1>
+                    <h1 class="cta-title"><strong>Estadísticas de la Ligas</strong></h1>
                 </div> <!-- /.col-md-12 -->
             </div> <!-- /.row -->
         </div> <!-- /.container -->
@@ -53,7 +53,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
-                    <h4>Top 5 de Goleadores</h4>
+                    <h4>Top 5 Goleadores</h4>
                     <table>
                         <thead>
                             <tr>
@@ -76,7 +76,7 @@
             <div style="margin: 30px 0;"></div>
             <div class="row">
                 <div class="col-xs-12">
-                    <h4>Top 5 de equipos con más faltas amarillas</h4>
+                    <h4>Top 5 tarjetas amarillas</h4>
                     <table>
                         <thead>
                             <tr>
@@ -99,7 +99,7 @@
             <div style="margin: 30px 0;"></div>
             <div class="row">
                 <div class="col-xs-12">
-                    <h4>Top 5 de Equipos más faltas rojas</h4>
+                    <h4>Top 5 tarjetas rojas</h4>
                     <table>
                         <thead>
                             <tr>

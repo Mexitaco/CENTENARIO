@@ -180,7 +180,7 @@ a, a:visited {
   -moz-box-shadow: rgba(0, 0, 0, 0.35) 0px 0px 3px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.35) 0px 0px 3px;
   z-index: 9999;
-  padding: 35px 0;
+  padding: 25px 0;
   overflow: visible;
   transition: padding 0.3s ease-in-out;
   -moz-transition: padding 0.3s ease-in-out;
@@ -204,6 +204,7 @@ a, a:visited {
   font-family: "Raleway", sans-serif;
   padding: 5px 15px;
   display: block;
+  text-decoration: none;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   -ms-border-radius: 3px;
@@ -1366,4 +1367,10 @@ blockquote {
     width: 100%;
     height: auto;
   }
+}
+
+.logo {
+  display: flex;
+  justify-content: flex-start;
+  height: 8px;
 }

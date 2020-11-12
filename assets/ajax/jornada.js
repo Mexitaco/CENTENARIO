@@ -56,6 +56,8 @@ $(document).ready(function () {
         return;
     }
 
+    var t = 'Resultado';
+
     // tablaUsuarios ES EL ID DE LA TABLA A LA QUE LE METEREMOS TODA LA INFORMACIÓN
     // arregloDT TIENE LA INFORMACIÓN QUE QUEREMOS MOSTRAR
     table = $('#tablaJornada').DataTable({
@@ -82,7 +84,22 @@ $(document).ready(function () {
             },
         },
         "order": [[0, "asc"]],
-        responsive: true
+        responsive: true,
+        dom: '<"col-xs-3"l><"col-xs-5"B><"col-xs-4"f>rtip',
+        buttons: [
+            {
+                extend: 'print',
+                title: t
+            },
+            {
+                extend: 'pdf',
+                title: t
+            },
+            {
+                extend: 'excel',
+                title: t
+            }
+        ]
     });
 
 });

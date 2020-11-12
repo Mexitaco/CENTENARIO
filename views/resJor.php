@@ -42,6 +42,24 @@
 ?>
 
 <main>
+	<section id="homeIntro" class="parallax first-widget">
+        <div class="parallax-overlay">
+                <div class="row">
+                    <div class="col-md-12">
+                    </div> <!-- /.col-md-12 -->
+                </div> <!-- /.row -->
+            </div> <!-- /.container -->
+        </div> <!-- /.parallax-overlay -->
+    </section> <!-- /#homeIntro -->
+	<section class="cta clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="cta-title"><strong>Resultado del partido </strong></h1>
+                </div> <!-- /.col-md-12 -->
+            </div> <!-- /.row -->
+        </div> <!-- /.container -->
+    </section> <!-- /.cta -->
 	<!-- AQUÍ VA EL CONTENIDO DEL MENÚ PRINCIPAL -->
 	<section class="light-content services">
 		<div class="container">
@@ -62,7 +80,7 @@
 										<th style="color:#FFFFFF";>Tarjetas R.</th>
 										<th style="color:#FFFFFF";>Horario</th>
 										<th style="color:#FFFFFF";>Cancha</th>
-										<th style="color:#FFFFFF";>Ganador</th>
+										<th style="color:#FFFFFF";>Resultado</th>
 									</tr>
 								</thead>
 								<tbody>

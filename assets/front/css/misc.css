@@ -9,7 +9,7 @@
 }
 
 table{
-	background-color: #F2F2F2;
+	background-color: white;
 	text-align: center;
 	border-collapse: collapse;
 	width: 100%;
@@ -24,7 +24,11 @@ th, td{
 thead{
 	background-color: #0C8147;
 	border-bottom: solid 5px #0C8147;
-	color: black;
+	color: white;
+}
+
+tr {
+  border-bottom: 1px solid #eaeaea;
 }
 
 tr:nth-child(even){
@@ -1090,4 +1094,8 @@ html[xmlns] .slides {
     opacity: 1;
     right: 10px;
   }
+}
+
+#tablaPosiciones {
+   border-collapse: collapse;
 }

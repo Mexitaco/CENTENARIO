@@ -1,0 +1,226 @@
+
+	.login{
+		display: flex;
+    	width: 100%;
+	}
+
+	.fondo {
+		background-image: url("../images/includes/motivacion.jpg");
+		background-size: cover;
+		background-position: center center;
+		height: 100vh;
+		width: 60%;
+		background-repeat: no-repeat;
+	}
+
+	.filtro {
+		background-color: rgba(0,0,0,0.4);
+		width: 100%;
+    	height: 100%;
+    	box-shadow: inset 0px 0px 120px rgb(0 0 0 / 85%);
+	}
+
+	h1{
+		margin: 0;
+		padding: 0;
+    }
+    
+    .bg-login {
+        color: #0c8147;
+    }
+
+	.filtro h1 {
+		width: inherit;
+    	height: inherit;
+		color: #ffff;
+		text-transform: uppercase;
+		font-size: 5rem;
+		font-weight: 300;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.login-form {
+		width: 40%;
+		height: 100vh;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		box-shadow: 0 0, inset 1rem 0rem 1.5rem rgb(0 0 0 / 22%);
+	}
+
+	.login-form > * {
+		margin: 15px 0;
+	}
+
+    .formlogin {
+        padding: 0 15px;
+    }
+
+	.bold {
+		font-weight: bold;
+    }
+    
+    .animacion {
+        display: flex;
+        width: 100%;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .size-animacion {
+        height: 500px;
+        width: 500px;
+        position: absolute;
+        overflow: hidden;
+        /* top: 0%; */
+        /* left: 0%;*/
+    }
+
+    .balon {
+        background-image: url('../images/balon.png');
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-position: center center;
+        width: 10%;
+        height: 10%;
+        top: 45%;
+        left: 45%;
+        position: absolute;
+        overflow: hidden;
+        z-index: 1000000;
+        animation-name: balon;
+        animation-duration: 3s;
+        animation-timing-function: ease-in;
+        visibility: visible;
+        /* animation-iteration-count: infinite; */
+    }
+
+    @keyframes balon {
+        0% {
+            top: -50%;
+            transform: rotate(0deg);
+        }
+        70% {
+            top: 52%;
+        }
+        80% {
+            top: 40%;
+        }
+        90% {
+            top: 46%;
+        }
+        95% {
+            top: 43%;
+        }
+        100% {
+            top: 45%;
+            left: 45%;
+            transform: rotate(360deg);
+            visibility: hidden;
+        }
+    }
+
+    .balon-girando {
+        background-image: inherit;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-position: center center;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        overflow: hidden;
+        z-index: 1000000;
+        visibility: hidden;
+        animation-name: balon-girando;
+        animation-duration: 3s;
+        animation-delay: 3s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        transform: rotate(0deg);
+    }
+
+    @keyframes balon-girando {
+        0% {   
+            visibility: visible;
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+            visibility: visible;
+        }
+    }
+
+    .alas {
+        background-image: url('../images/alas2.png');
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-position: center center;
+        width: 25%;
+        height: 25%;
+        top: 31%;
+        left: 37.9%;
+        position: absolute;
+        overflow: hidden;
+        z-index: 999999;
+        animation-name: alas;
+        animation-duration: 2.3s;
+        animation-delay: 2.5s;
+        animation-timing-function: linear;
+        animation-fill-mode: both;
+        visibility: hidden;
+    }
+
+    @keyframes alas {
+        0% {
+            visibility: visible;
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    .cinta {
+        background-image: url('../images/cinta-centenario.png');
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-position: center center;
+        width: 39%;
+        height: 14%;
+        top: 52%;
+        left: 31%;
+        position: absolute;
+        overflow: hidden;
+        z-index: 1000000;
+        animation-name: cinta;
+        animation-duration: 2.3s;
+        animation-delay: 2.5s;
+        animation-timing-function: linear;
+        animation-fill-mode: both;
+        visibility: hidden;
+    }
+
+    @keyframes cinta {
+        0% {
+            visibility: visible;
+            opacity: 0;
+            transform: scale(0.5);
+        }
+        80% {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1.05);
+        }
+        100% {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
+        }
+    }

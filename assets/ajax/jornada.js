@@ -31,12 +31,12 @@ $(".form-jornada").submit(function (e) {
                         location.href = "conJor.php";
                     });
                 } else {
-                    console.log('hola');
+                    // console.log('hola');
                 }
             },
             error: function (response) {
                 loader(false);
-                console.log(response.responseJSON.message);
+                //console.log(response.responseJSON.message);
                 if (response.error) {
                     swal({
                         title: "Error",

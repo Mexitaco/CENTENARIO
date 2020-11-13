@@ -3,14 +3,14 @@
         <div class="row">
             <div class="logo">
                 <a href="index.php">
-                    <img src="../assets/front/images/logo.png" width="40%" height="80px" alt="">
+                    <img src="../assets/front/images/logo.png" width="40%" height="70px" alt="">
                 </a>
             </div>	<!-- /.logo -->
             <div class="col-md-12">
                 <div class="main-navigation pull-right" style="display: flex;
                     justify-content: center;
                     align-items: center;
-                    height: 80px;"
+                    height: 70px;"
                 >
                     <nav class="main-nav visible-md visible-lg">
                         <ul class="sf-menu">
@@ -37,7 +37,7 @@
 
                     <!-- Este de aquí es un menú receptivo para tabletas y móviles -->
                     <div class="responsive-navigation visible-sm visible-xs">
-                        <a href="#nogo" class="menu-toggle-btn">
+                        <a href="#logo" class="menu-toggle-btn">
                             <i class="fa fa-bars"></i>
                         </a>
                     </div> <!-- /responsive_navigation -->

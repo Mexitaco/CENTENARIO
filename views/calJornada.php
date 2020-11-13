@@ -109,7 +109,7 @@
 												<select id="goles_local" class="form-control" name="select_goles_local[]" style="">
 													<option value="0" selected="selected">Seleccione un jugador</option>
 													<?php 
-													$calJornada->jugador($idLocal);
+														$calJornada->jugador($idLocal);
 													?>
 												</select>
 											</div>
@@ -163,7 +163,7 @@
 												<select id="goles_visitante" class="form-control" name="select_goles_visitante[]" style="">
 													<option value="0" selected="selected">Seleccione un jugador</option>
 													<?php 
-													$calJornada->jugador($idVisitante);
+														$calJornada->jugador($idVisitante);
 													?>
 												</select>
 											</div>

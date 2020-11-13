@@ -110,20 +110,29 @@ $(document).on("click", ".enviarTodo", function (e) {
             if (response.success) {
                 swal({
                     title: "Operación exitosa",
-                    type: 'success',
                     icon: 'success',
-                    message: response.message
+                    text: response.message
                 }).then(() => {
                     location.href = "conJor.php";
                 });
             }
             else {
-                swal(response.message, "", "info");
+                swal({
+                    title: "Advertencia",
+                    icon: 'info',
+                    text: response.message
+                });
             }
         },
-        error: function () {
+        error: function (response) {
             loader(false);
-            swal("Por favor ingrese valores mayor a 1", "", "error");
+            if (response.error) {
+                swal({
+                    title: "Error",
+                    icon: 'error',
+                    text: response.responseJSON.message
+                });
+            }
         }
     });
     e.preventDefault();

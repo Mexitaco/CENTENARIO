@@ -11,128 +11,230 @@ if(isset($_GET["eliminar"])){
     
 }
 else if(isset($_GET["save-caljor"])) {
-    $calificar = new CalificarJornada();
     
-    $golesLocal = 0;
-    $tarAmaLocal = 0;
-    $tarRojLocal = 0;
+    if ($_GET['save-caljor'] == 'true') {
+        
+        if (isset($_POST)) {
 
-    $golesVisitante = 0;
-    $tarAmaVisitante = 0;
-    $tarRojVisitante = 0;
+            if ($_POST != null) { 
 
+                $calificar = new CalificarJornada();
+
+                $golesLocal = 0;
+                $tarAmaLocal = 0;
+                $tarRojLocal = 0;
+
+                $golesVisitante = 0;
+                $tarAmaVisitante = 0;
+                $tarRojVisitante = 0;
+
+                $idLocal = (int) $_POST['idLocal'];
+                $idVisitante = (int) $_POST['idVisitante'];
+                $idJornada = (int) $_POST['idJornada'];
+
+                $select_goles_local = array_map( create_function('$value', 'return (int)$value;'), $_POST['select_goles_local']);
+                $select_amarillas_local = array_map( create_function('$value', 'return (int)$value;'), $_POST['select_amarillas_local']);
+                $select_rojas_local = array_map( create_function('$value', 'return (int)$value;'), $_POST['select_rojas_local']);
+                $select_goles_visitante = array_map( create_function('$value', 'return (int)$value;'), $_POST['select_goles_visitante']);
+                $select_amarillas_visitante = array_map( create_function('$value', 'return (int)$value;'), $_POST['select_amarillas_visitante']);
+                $select_rojas_visitante = array_map( create_function('$value', 'return (int)$value;'), $_POST['select_rojas_visitante']);
+
+                function validar($var) {
+                    foreach ($var as $key => $value) {
+                        if ($value < 0 ) {
+                            return $flag = false;
+                        } else {
+                            return $flag = true;
+                        }
+                    }
+                }
+
+                $flags1 = validar($select_goles_local);
+                $flags2 = validar($select_amarillas_local);
+                $flags3 = validar($select_rojas_local);
+                $flags4 = validar($select_goles_visitante);
+                $flags5 = validar($select_amarillas_visitante);
+                $flags6 = validar($select_rojas_visitante);
+                
+
+                if ($idLocal <= 0 || $idVisitante <= 0 || $idJornada <= 0) {
+
+                    http_response_code(424);
+                    
+                    echo json_encode(["error" => true, "message" => "Valor no admitido"]);    
+
+                } else {
+
+                    if (
+                        $flags1 == true &&
+                        $flags2 == true &&
+                        $flags3 == true &&
+                        $flags4 == true &&
+                        $flags5 == true &&
+                        $flags6 == true 
+                    ) {
+
+                        if (isset($_POST['select_goles_local'])) {
+                            foreach ($select_goles_local as $key => $value) {
+                                
+                                if ($value > 0) {
+                                    $calificar->golesJugador($value, 1);
+            
+                                    $golesLocal++;
+                                }
+                                
+                            }
+                        }
     
-    if (isset($_POST['select_goles_local'])) {
-        foreach ($_POST['select_goles_local'] as $key => $value) {
-            
-            $calificar->golesJugador($value, 1);
-
-            $golesLocal++;
-        }
-    }
-
-    if (isset($_POST['select_amarillas_local'])) {
-        foreach ($_POST['select_amarillas_local'] as $key => $value) {
-            
-            $calificar->tarjetasAmarillasJugador($value, 1);
-
-            $tarAmaLocal++;
-        }
-    }
-
-    if (isset($_POST['select_rojas_local'])) {
-        foreach ($_POST['select_rojas_local'] as $key => $value) {
-            
-            $calificar->tarjetasRojasJugador($value, 1);
-
-            $tarRojLocal++;
-        }
-    }
-
-    if (isset($_POST['select_goles_visitante'])) {
-        foreach ($_POST['select_goles_visitante'] as $key => $value) {
-            
-            $calificar->golesJugador($value, 1);
-
-            $golesVisitante++;
-        }
-    }
-
-    if (isset($_POST['select_amarillas_visitante'])) {
-        foreach ($_POST['select_amarillas_visitante'] as $key => $value) {
-            
-            $calificar->tarjetasAmarillasJugador($value, 1);
-
-            $tarAmaVisitante++;
-        }
-    }
-
-    if (isset($_POST['select_rojas_visitante'])) {
-        foreach ($_POST['select_rojas_visitante'] as $key => $value) {
-            
-            $calificar->tarjetasRojasJugador($value, 1);
-
-            $tarRojVisitante++;
-        }
-    }
-
-    if (
-        $golesLocal != NULL &&
-        $tarAmaLocal != NULL &&
-        $tarRojLocal != NULL &&
-        $golesVisitante != NULL &&
-        $tarAmaVisitante != NULL &&
-        $tarRojVisitante > NULL
-    ) {
-
-        // echo             $_POST['idLocal'].','.
-        // $_POST['idVisitante'].','.
-        // $golesLocal.','.
-        // $golesVisitante.','.
-        // $tarAmaVisitante.','.
-        // $tarAmaLocal.','.
-        // $tarRojVisitante.','.
-        // $tarRojLocal;
-
-        $response = $calificar->actualizarPartido(
-            $_POST['idLocal'],
-            $_POST['idVisitante'],
-            $golesLocal,
-            $golesVisitante,
-            $tarAmaVisitante,
-            $tarAmaLocal,
-            $tarRojVisitante,
-            $tarRojLocal,
-            $_POST['idJornada']
-        );
-
-        echo json_encode($response);
-    }
-
-    // if ($golesLocal != 0) {
-    //     $calificar->golesEquipoLocal($_POST['idLocal'], $golesLocal);
-    // }
-
-    // if ($tarAmaLocal != 0) {
-    //     $calificar->tarjetasAmarillasEquipoLocal($_POST['idLocal'], $tarAmaLocal);
-    // }
-
-    // if ($golesLocal != 0) {
-    //     $calificar->tarjetasRojasEquipoLocal($_POST['idLocal'], $golesLocal);
-    // }
+                        if (isset($_POST['select_amarillas_local'])) {
+                            foreach ($select_amarillas_local as $key => $value) {
+                                
+                                if ($value > 0) {
+                                    $calificar->tarjetasAmarillasJugador($value, 1);
+        
+                                    $tarAmaLocal++;
+                                }
+                            }
+                        }
     
-    // if ($golesVisitante != 0) {
-    //     $calificar->golesEquipoVisitante($_POST['idVisitante'], $golesVisitante);
-    // }
+                        if (isset($_POST['select_rojas_local'])) {
+                            foreach ($select_rojas_local as $key => $value) {
+    
+                                if ($value > 0) {
+                                    $calificar->tarjetasRojasJugador($value, 1);
+                                    
+                                    $tarRojLocal++;
+                                }
+                            }
+                        }
+    
+                        if (isset($_POST['select_goles_visitante'])) {
+                            foreach ($select_goles_visitante as $key => $value) {
+                                
+                                if ($value > 0) {
+                                    $calificar->golesJugador($value, 1);
+                                    
+                                    $golesVisitante++;
+                                }
+                            }
+                        }
+    
+                        if (isset($_POST['select_amarillas_visitante'])) {
+                            foreach ($select_amarillas_visitante as $key => $value) {
+                                
+                                if ($value > 0) {
+                                    $calificar->tarjetasAmarillasJugador($value, 1);
+                                    
+                                    $tarAmaVisitante++;
+                                }
+                            }
+                        }
+    
+                        if (isset($_POST['select_rojas_visitante'])) {
+                            foreach ($select_rojas_visitante as $key => $value) {
+                                
+                                if ($value > 0) {
+                                    $calificar->tarjetasRojasJugador($value, 1);
+                                    
+                                    $tarRojVisitante++;
+                                }
+                            }
+                        }
 
-    // if ($tarAmaLocal != 0) {
-    //     $calificar->tarjetasAmarillasEquipoVisitante($_POST['idVisitante'], $tarAmaLocal);
-    // }
+                        if (
+                            $golesLocal >= 0 &&
+                            $tarAmaLocal >= 0 &&
+                            $tarRojLocal >= 0 &&
+                            $golesVisitante >= 0 &&
+                            $tarAmaVisitante >= 0 &&
+                            $tarRojVisitante >= 0 
+                        ) {
 
-    // if ($golesLocal != 0) {
-    //     $calificar->tarjetasRojasEquipoVisitante($_POST['idVisitante'], $golesLocal);
-    // }
+                            $response = $calificar->actualizarPartido(
+                                    $idLocal,
+                                    $idVisitante,
+                                    $golesLocal,
+                                    $golesVisitante,
+                                    $tarAmaVisitante,
+                                    $tarAmaLocal,
+                                    $tarRojVisitante,
+                                    $tarRojLocal,
+                                    $idJornada
+                                );
+            
+                                echo json_encode($response);
 
+                        } else {
+                            echo json_encode(["error" => true, "message" => "Datos truncados"]);    
+                        }
+
+                    } else {
+                        http_response_code(424);
+                    
+                        echo json_encode(["error" => true, "message" => "Valor no admitido en jugadores"]);    
+    
+                    }
+
+                    // if (
+                    //     $golesLocal >= 0 &&
+                    //     $tarAmaLocal >= 0 &&
+                    //     $tarRojLocal >= 0 &&
+                    //     $golesVisitante >= 0 &&
+                    //     $tarAmaVisitante >= 0 &&
+                    //     $tarRojVisitante >= 0 
+                    // ) {
+
+                    //     if (
+                    //         // isset($_POST['idLocal']) && $_POST['idLocal'] != '' &&
+                    //         // isset($_POST['idVisitante']) && $_POST['idVisitante'] != '' &&
+                    //         // isset($_POST['idJornada']) && $_POST['idJornada'] != ''
+                    //         $flag == true
+                    //     ) {
+    
+                    //         $response = $calificar->actualizarPartido(
+                    //             $idLocal,
+                    //             $idVisitante,
+                    //             $golesLocal,
+                    //             $golesVisitante,
+                    //             $tarAmaVisitante,
+                    //             $tarAmaLocal,
+                    //             $tarRojVisitante,
+                    //             $tarRojLocal,
+                    //             $idJornada
+                    //         );
+
+                    //         echo json_encode($response);
+                                                
+                    //     } else {
+                    //         http_response_code(424);
+                    //         echo json_encode(["error" => true, "message" => "Uno de los campos esta vacío"]);    
+                    //     }
+
+                    // } else {
+                    //     http_response_code(500);
+                    //     echo json_encode(["error" => true, "message" => "La solicitud se proceso, pero no fue enviada"]);
+                    // }
+                    
+                }
+
+            } else {
+                http_response_code(400);
+                echo json_encode(["error" => true, "message" => "No hay información en la solicitud"]);
+            }
+            
+        } else {
+            http_response_code(400);
+            echo json_encode(["error" => true, "message" => "No hay información en la solicitud"]);
+        }
+
+    } else {
+        http_response_code(412);
+        echo json_encode(["error" => true, "message" => "Parámetro no permitido"]);
+    }
+
+} else {
+    http_response_code(404);
+    echo json_encode(["error" => true, "message" => "No se encontró la dirección solicitada"]);
 }
 
 ?>

@@ -3,8 +3,8 @@ var table;
 
 $(document).ready(function(){
 
-    // tablaUsuarios ES EL ID DE LA TABLA A LA QUE LE METEREMOS TODA LA INFORMACIÓN
-    // arregloDT TIENE LA INFORMACIÓN QUE QUEREMOS MOSTRAR
+    var t = 'Partidos';
+
     table = $('#tablaJornadaEquipo').DataTable( {
         "data": arregloDT,
         "pageLength": 25,
@@ -55,7 +55,22 @@ $(document).ready(function(){
                 });
             });
         },
-        responsive: true
+        responsive: true,
+        dom: '<"col-xs-3"l><"col-xs-5"B><"col-xs-4"f>rtip',
+        buttons: [
+            {
+                extend: 'print',
+                title: t
+            },
+            {
+                extend: 'pdf',
+                title: t
+            },
+            {
+                extend: 'excel',
+                title: t
+            }
+        ]
     });
 
 });

@@ -17,6 +17,8 @@
 
 		$calJornada = new CalificarJornada();
 
+		$res = $calJornada->verificarResultado($id);
+		//var_dump($res);
     }
     
 ?>

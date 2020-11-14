@@ -110,6 +110,15 @@ class CalificarJornada
 		}
 	}
 
+    public function verificarResultado($idResultado){
+        $jornada = new Jornada();
+
+        $id = (int) $idResultado;
+
+        $resultado = $jornada->verificarResultado($id);
+
+        return $resultado;
+    }
 
     // public function golesEquipoLocal($id, $goles) {
     //     $equipoLocal = new EquipoLocal();

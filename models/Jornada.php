@@ -355,5 +355,24 @@ class Jornada
         }
 	}
 	
+	public static function verificarResultado($idResultado){
+        $conexion = new Conexion();
+		$sql = "
+            SELECT equipo_ganador FROM jornada WHERE id = :id
+        ";
+			
+		$query = $conexion->prepare($sql);	
+
+		$query->bindValue(":id", $idResultado, PDO::PARAM_INT);
+
+		$query->execute();
+		
+        $resultado = $query->fetch(PDO::FETCH_ASSOC);
+	
+    
+
+        return $resultado;
+	}
+
 }
 ?>

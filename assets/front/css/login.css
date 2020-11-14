@@ -93,7 +93,7 @@
         left: 45%;
         position: absolute;
         overflow: hidden;
-        z-index: 1000000;
+        z-index: 4000;
         animation-name: balon;
         animation-duration: 3s;
         animation-timing-function: ease-in;
@@ -135,7 +135,7 @@
         height: 100%;
         position: absolute;
         overflow: hidden;
-        z-index: 1000000;
+        z-index: 4000;
         visibility: hidden;
         animation-name: balon-girando;
         animation-duration: 3s;
@@ -167,7 +167,7 @@
         left: 37.9%;
         position: absolute;
         overflow: hidden;
-        z-index: 999999;
+        z-index: 3999;
         animation-name: alas;
         animation-duration: 2.3s;
         animation-delay: 2.5s;
@@ -198,7 +198,7 @@
         left: 31%;
         position: absolute;
         overflow: hidden;
-        z-index: 1000000;
+        z-index: 4000;
         animation-name: cinta;
         animation-duration: 2.3s;
         animation-delay: 2.5s;

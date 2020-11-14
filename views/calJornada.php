@@ -18,7 +18,10 @@
 		$calJornada = new CalificarJornada();
 
 		$res = $calJornada->verificarResultado($id);
-		//var_dump($res);
+
+		if ($res['equipo_ganador'] != 'Sin resultados') {
+			header('Location: conJor.php');
+		}
     }
     
 ?>

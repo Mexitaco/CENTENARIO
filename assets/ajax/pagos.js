@@ -38,21 +38,30 @@ $(function () {
                 if(response.success){
                     swal({
                         title: "Operación exitosa",
-                        type: 'success',
                         icon: 'success',
-                        message: response.message
+                        text: response.message
                     }).then(() => {
                         location.href = "finanzas.php";
                     });
                 }
                 else{
-                    swal(response.message, "", "info");
+                    swal({
+                        title: "Advertencia",
+                        icon: 'info',
+                        text: response.message
+                    });
                 }
             },
-             error: function () {
+            error: function (response) {
                 loader(false);
-                swal("Por favor ingrese un valor mayor a 1", "", "error");
-             }
+                if (response.error) {
+                    swal({
+                        title: "Error",
+                        icon: 'error',
+                        text: response.responseJSON.message
+                    });
+                }
+            }
         });
     });
 });
@@ -96,6 +105,9 @@ $(document).ready(function(){
         },
         "order": [[ 0, "asc" ]],
         responsive: true,
+        dom: "<'row'<'col-sm-12 mx-1'l><'col-sm-12 mx-1'f>>" +
+        "<'row'<'col-sm-12'tr>>" +
+        "<'row'<'col-sm-5'i><'col-sm-7'p>>",
     });
     
 });

@@ -80,7 +80,7 @@
 										<th style="color:#FFFFFF";>Tarjetas R.</th>
 										<th style="color:#FFFFFF";>Horario</th>
 										<th style="color:#FFFFFF";>Cancha</th>
-										<th style="color:#FFFFFF";>Resultado</th>
+										<th style="color:#FFFFFF";>Resultado: </th>
 									</tr>
 								</thead>
 								<tbody>

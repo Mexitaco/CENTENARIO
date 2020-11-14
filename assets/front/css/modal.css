@@ -3,6 +3,9 @@
   font-size: 20px;
 }
 
+button:focus, a:focus {
+  outline: 0;
+}
 
 .modal {
     text-align: center;
@@ -99,8 +102,6 @@
  
 }
 
-
-
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
  
     background-color: #0c8147 !important; 
@@ -112,4 +113,17 @@
     background-color: #0c8147 !important;
     border: none !important;
     background: linear-gradient(#0c8147) !important; 
+}
+
+.mx-1 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.elejir-equipo {
+  display: inline-flex;
+  width: 100%;
+  align-items: center;
+  column-gap: 5%;
+  
 }

@@ -69,23 +69,25 @@
 	<section class="light-content services">
 		<div class="container">
 			<div class="row">
-				<div class="col-xs-12">
-					<label for=""> Elije un Equipo:</label>
-					<select id="equipos" name="entradalista1" style="color:#000000";>
-						<option value="0" selected="selected">Seleccione un equipo</option>
-					
-						<?php
+				<div class="col-xs-12" style="padding: 0 40px;">
+					<div class="elejir-equipo">
+						<label for="equipos" class="bold"> Elije un Equipo:</label>
+						<select id="equipos" class="form-control" name="entradalista1" style="color:#000000; width: 50%;">
+							<option value="0" selected="selected">Seleccione un equipo</option>
+						
+							<?php
 
-							$equipos = implode(Equipos::consultarNombreEquipo());
-							echo $equipos;
+								$equipos = implode(Equipos::consultarNombreEquipo());
+								echo $equipos;
 
-						?>
+							?>
 
-					</select>
-					<!-- Button modal -->
-					<button type="button" class="btn btn-primary btn-lg hid" data-toggle="modal" id="mod" data-target="#myModal" style="margin-left: 15px;">
-						Nuevo
-					</button>
+						</select>
+						<!-- Button modal -->
+						<button type="button" class="btn btn-primary hid" data-toggle="modal" id="mod" data-target="#myModal" style="margin-left: 15px;">
+							Nuevo
+						</button>
+					</div>
 				</div>
 			</div>
 			<div class="row">
@@ -125,7 +127,7 @@
 				<form class="form-pagos">
 					<div class="form-group">
 						<label for="abono">Abono</label>
-						<input type="number" class="form-control input-lg" id="abono" name="abono" placeholder="Ejemplo: 100" required>
+						<input type="number" class="form-control input-lg" id="abono" name="abono" min="1" max="7000" placeholder="Ejemplo: 100" required>
 					</div>
 					<div class="form-group">
 						<input type="number" id="equipo" name="equipo" class="equipo" style="display: none;">

@@ -59,8 +59,8 @@ class Pagos
 
             $query = $conexion->prepare($sql);
 
-            $query->bindValue(":id_equipo", $this->id_equipo);
-            $query->bindValue(":abono", $this->abono);
+            $query->bindValue(":id_equipo", $this->id_equipo, PDO::PARAM_INT);
+            $query->bindValue(":abono", $this->abono, PDO::PARAM_INT);
 
             $query->execute();
 
@@ -72,16 +72,21 @@ class Pagos
         }
     }
 
-    public static function consultar(){
+    public static function consultar($idVerificar = ""){
         $conexion = new Conexion();
+
+        if ($idVerificar != NULL && $idVerificar != "" && $idVerificar > 0) {
+            $opcional = 'WHERE id_equipo = ';
+            $idVerificar = $opcional.$idVerificar;
+        }
+
         $sql = "
-            SELECT eq.nombre_equipo,
-            max(pag.fecha_pago) as fecha_pago,
-            SUM(pag.abono) as abono,
-            SUM(pag.total)as total,
-            SUM(pag.total)-SUM(pag.abono) as Restante
-            FROM equipos eq INNER JOIN pagos pag
-            ON eq.id = pag.id_equipo GROUP BY pag.id_equipo";
+            SELECT eq.nombre_equipo, max(pag.fecha_pago) as fecha_pago,
+            SUM(pag.abono) as abono, MIN(pag.total)as total,
+            MIN(pag.total)-SUM(pag.abono) as Restante
+            FROM equipos eq INNER JOIN pagos pag 
+            ON eq.id = pag.id_equipo ".$idVerificar." GROUP BY pag.id_equipo
+        ";
             
         $query = $conexion->prepare($sql);
 
@@ -98,6 +103,7 @@ class Pagos
                 $value['total'],
                 $value['Restante']
             );
+
         }
 
         return $resultados;

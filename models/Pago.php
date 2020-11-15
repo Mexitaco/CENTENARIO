@@ -2,7 +2,7 @@
 
 include_once "../conexion/Conexion.php";
 
-class Pagos
+class Pago
 {
     private $id;
     private $id_equipo;
@@ -54,20 +54,39 @@ class Pagos
         $conexion = new Conexion();
 
         try{
-            $sql = "INSERT INTO pagos (id_equipo, fecha_pago, abono, total) ".
-                "VALUES(:id_equipo, DEFAULT, :abono, DEFAULT);";
+            $sql = "
+                INSERT INTO pagos (id, id_equipo, fecha_pago, abono, total) ".
+                "VALUES(
+                    DEFAULT,
+                    (SELECT id FROM equipos WHERE id = :id_equipo),
+                    :fecha_pago,
+                    :abono,
+                    DEFAULT)
+                ;";
 
             $query = $conexion->prepare($sql);
 
+            $formato = "Y-m-d H:i:s";
+            $fecha = new DateTime("now", new DateTimeZone('America/Mexico_City'));
+            $this->fecha_pago = $fecha->format($formato);
+
             $query->bindValue(":id_equipo", $this->id_equipo, PDO::PARAM_INT);
             $query->bindValue(":abono", $this->abono, PDO::PARAM_INT);
+            $query->bindValue(":fecha_pago", $this->fecha_pago, PDO::PARAM_STR);
 
             $query->execute();
 
-            return ["success" => true, "message" => "Abono añadido"];
-            
+            $error = $query->errorInfo();
+
+            if ($error[2] != '') {
+                //print_r($query->errorInfo());
+                return ["error" => true, "message" => "Equipo inexistente"];
+            } else {
+                return ["success" => true, "message" => "Abono añadido"];
+            }
+
         } catch (Exception $e){
-            return ["success" => false, "message" => "Ocurrió un error inesperado2",
+            return ["success" => false, "message" => "Ocurrió un error inesperado",
                 "error" => $e->getMessage(), "exception" => json_encode($e)];
         }
     }

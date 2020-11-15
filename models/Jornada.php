@@ -368,11 +368,36 @@ class Jornada
 		$query->execute();
 		
         $resultado = $query->fetch(PDO::FETCH_ASSOC);
-	
-    
+
+        return $resultado;
+	}
+
+	public static function verificarId($tab, $idVerificar){
+
+		if ($tab == null || $tab == '') {
+			return false;
+		}
+
+		if ($idVerificar == null || $idVerificar == '') {
+			return false;
+		}
+
+        $conexion = new Conexion();
+		$sql = "
+            SELECT id FROM ".$tab." WHERE id = :id
+        ";
+			
+		$query = $conexion->prepare($sql);	
+
+		$query->bindValue(":id", $idVerificar, PDO::PARAM_INT);
+
+		$query->execute();
+		
+        $resultado = $query->fetch(PDO::FETCH_ASSOC);
 
         return $resultado;
 	}
 
 }
+
 ?>

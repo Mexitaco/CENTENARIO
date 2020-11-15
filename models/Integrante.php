@@ -109,12 +109,17 @@ class Integrante
 
 		try {
 
-		$sql = "UPDATE integrantes set goles = (SELECT SUM(goles) FROM integrantes WHERE id = :id) + :goles WHERE id = :id";
+		$sql = "
+			UPDATE integrantes set goles = (SELECT SUM(goles)
+			FROM integrantes WHERE id = :id) + :goles
+			WHERE id = :id AND id_equipo = :id_equipo
+		";
 
 		$query = $conexion->prepare($sql);
 		
 		$query->bindValue(":id", $this->id);
 		$query->bindValue(":goles", $this->goles);
+		$query->bindValue(":id_equipo", $this->id_equipo);
 
 		$query->execute();
 
@@ -133,12 +138,15 @@ class Integrante
 
 		$sql = "
 			UPDATE integrantes set tarjetas_amarillas = (SELECT SUM(tarjetas_amarillas)
-			FROM integrantes WHERE id = :id) + :tarjetas_amarillas WHERE id = :id";
+			FROM integrantes WHERE id = :id) + :tarjetas_amarillas
+			WHERE id = :id AND id_equipo = :id_equipo
+		";
 
 		$query = $conexion->prepare($sql);
 		
 		$query->bindValue(":id", $this->id);
 		$query->bindValue(":tarjetas_amarillas", $this->tarjetas_amarillas);
+		$query->bindValue(":id_equipo", $this->id_equipo);
 
 		$query->execute();
 
@@ -157,12 +165,15 @@ class Integrante
 
 		$sql = "
 			UPDATE integrantes set tarjetas_rojas = (SELECT SUM(tarjetas_rojas)
-			FROM integrantes WHERE id = :id) + :tarjetas_rojas WHERE id = :id";
+			FROM integrantes WHERE id = :id) + :tarjetas_rojas 
+			WHERE id = :id AND id_equipo = :id_equipo
+		";
 
 		$query = $conexion->prepare($sql);
 		
 		$query->bindValue(":id", $this->id);
 		$query->bindValue(":tarjetas_rojas", $this->tarjetas_rojas);
+		$query->bindValue(":id_equipo", $this->id_equipo);
 
 		$query->execute();
 

@@ -2,7 +2,7 @@
     //IMPORTAR VERIFICADORES DE ACCESO
     include_once "../auth/Session.php" ;
 	include_once "../auth/AuthSession.php";
-	include_once "../models/Jornada.php";
+	include_once "../models/Equipo.php";
 
     if(AuthSession::getUsuario() == null){
         header('Location: login.php');
@@ -58,7 +58,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h1 class="cta-title"><strong>Jornadas</strong></h1>
+					<h1 class="cta-title"><strong>Equipos</strong></h1>
 				</div> <!-- /.col-md-12 -->
 			</div> <!-- /.row -->
 		</div> <!-- /.container -->

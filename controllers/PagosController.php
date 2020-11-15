@@ -1,6 +1,6 @@
 <?php
  //include_once "../auth/AuthSession.php";
-include_once "../models/Pagos.php";
+include_once "../models/Pago.php";
 
  if(isset($_GET["save-pagos"])) {
 
@@ -10,7 +10,7 @@ include_once "../models/Pagos.php";
             
             if (isset($_POST['abono']) && $_POST['abono'] != "") {
                 
-                $pagos = new Pagos();
+                $pagos = new Pago();
 
                 $flag = false;
 

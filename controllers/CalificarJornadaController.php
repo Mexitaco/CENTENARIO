@@ -56,6 +56,9 @@ else if(isset($_GET["save-caljor"])) {
                 $flags5 = validar($select_amarillas_visitante);
                 $flags6 = validar($select_rojas_visitante);
                 
+                $flagJornada = $calificar->verificarId("jornada", $idJornada);
+                $flagLocal = $calificar->verificarId("equipos", $idLocal);
+                $flagVisitante = $calificar->verificarId("equipos", $idVisitante);
 
                 if ($idLocal <= 0 || $idVisitante <= 0 || $idJornada <= 0) {
 
@@ -71,14 +74,17 @@ else if(isset($_GET["save-caljor"])) {
                         $flags3 == true &&
                         $flags4 == true &&
                         $flags5 == true &&
-                        $flags6 == true 
+                        $flags6 == true &&
+                        !empty($flagVisitante) &&
+                        !empty($flagLocal) &&
+                        !empty($flagJornada)
                     ) {
 
                         if (isset($_POST['select_goles_local'])) {
                             foreach ($select_goles_local as $key => $value) {
                                 
                                 if ($value > 0) {
-                                    $calificar->golesJugador($value, 1);
+                                    $calificar->golesJugador($value, 1, $idLocal);
             
                                     $golesLocal++;
                                 }
@@ -90,7 +96,7 @@ else if(isset($_GET["save-caljor"])) {
                             foreach ($select_amarillas_local as $key => $value) {
                                 
                                 if ($value > 0) {
-                                    $calificar->tarjetasAmarillasJugador($value, 1);
+                                    $calificar->tarjetasAmarillasJugador($value, 1, $idLocal);
         
                                     $tarAmaLocal++;
                                 }
@@ -101,7 +107,7 @@ else if(isset($_GET["save-caljor"])) {
                             foreach ($select_rojas_local as $key => $value) {
     
                                 if ($value > 0) {
-                                    $calificar->tarjetasRojasJugador($value, 1);
+                                    $calificar->tarjetasRojasJugador($value, 1, $idLocal);
                                     
                                     $tarRojLocal++;
                                 }
@@ -112,7 +118,7 @@ else if(isset($_GET["save-caljor"])) {
                             foreach ($select_goles_visitante as $key => $value) {
                                 
                                 if ($value > 0) {
-                                    $calificar->golesJugador($value, 1);
+                                    $calificar->golesJugador($value, 1, $idVisitante);
                                     
                                     $golesVisitante++;
                                 }
@@ -123,7 +129,7 @@ else if(isset($_GET["save-caljor"])) {
                             foreach ($select_amarillas_visitante as $key => $value) {
                                 
                                 if ($value > 0) {
-                                    $calificar->tarjetasAmarillasJugador($value, 1);
+                                    $calificar->tarjetasAmarillasJugador($value, 1, $idVisitante);
                                     
                                     $tarAmaVisitante++;
                                 }
@@ -134,7 +140,7 @@ else if(isset($_GET["save-caljor"])) {
                             foreach ($select_rojas_visitante as $key => $value) {
                                 
                                 if ($value > 0) {
-                                    $calificar->tarjetasRojasJugador($value, 1);
+                                    $calificar->tarjetasRojasJugador($value, 1, $idVisitante);
                                     
                                     $tarRojVisitante++;
                                 }
@@ -170,51 +176,14 @@ else if(isset($_GET["save-caljor"])) {
 
                     } else {
                         http_response_code(424);
-                    
-                        echo json_encode(["error" => true, "message" => "Valor no admitido en jugadores"]);    
-    
+
+                        if (empty($flagVisitante) || empty($flagLocal) || empty($flagJorna)) {
+                            echo json_encode(["error" => true, "message" => "Parámetros no válidos"]);        
+                        } else {
+                            echo json_encode(["error" => true, "message" => "Valor no admitido en jugadores"]);    
+                        }
                     }
 
-                    // if (
-                    //     $golesLocal >= 0 &&
-                    //     $tarAmaLocal >= 0 &&
-                    //     $tarRojLocal >= 0 &&
-                    //     $golesVisitante >= 0 &&
-                    //     $tarAmaVisitante >= 0 &&
-                    //     $tarRojVisitante >= 0 
-                    // ) {
-
-                    //     if (
-                    //         // isset($_POST['idLocal']) && $_POST['idLocal'] != '' &&
-                    //         // isset($_POST['idVisitante']) && $_POST['idVisitante'] != '' &&
-                    //         // isset($_POST['idJornada']) && $_POST['idJornada'] != ''
-                    //         $flag == true
-                    //     ) {
-    
-                    //         $response = $calificar->actualizarPartido(
-                    //             $idLocal,
-                    //             $idVisitante,
-                    //             $golesLocal,
-                    //             $golesVisitante,
-                    //             $tarAmaVisitante,
-                    //             $tarAmaLocal,
-                    //             $tarRojVisitante,
-                    //             $tarRojLocal,
-                    //             $idJornada
-                    //         );
-
-                    //         echo json_encode($response);
-                                                
-                    //     } else {
-                    //         http_response_code(424);
-                    //         echo json_encode(["error" => true, "message" => "Uno de los campos esta vacío"]);    
-                    //     }
-
-                    // } else {
-                    //     http_response_code(500);
-                    //     echo json_encode(["error" => true, "message" => "La solicitud se proceso, pero no fue enviada"]);
-                    // }
-                    
                 }
 
             } else {

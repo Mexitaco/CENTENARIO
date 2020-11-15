@@ -2,8 +2,8 @@
     //IMPORTAR VERIFICADORES DE ACCESO
     include_once "../auth/Session.php" ;
 	include_once "../auth/AuthSession.php";
-	include_once "../models/Pagos.php";
-	include_once "../models/Equipos.php";
+	include_once "../models/Pago.php";
+	include_once "../models/Equipo.php";
 
     if(AuthSession::getUsuario() == null){
         header('Location: login.php');
@@ -30,7 +30,7 @@
 		PERO ANTES USUAMOS EL MÉTODO CONSULTAR PARA TRAER LA INFORMACIÓN Y CONVERTIRLA
 		EN UN OBJETO JSON PARA QUE EL DATA TABLE PUEDA MOSTRARLO
 	*/
-	var arregloDT = <?php echo json_encode(Pagos::consultar()); ?>;
+	var arregloDT = <?php echo json_encode(Pago::consultar()); ?>;
 	console.log(arregloDT);
 
 	</script>
@@ -77,7 +77,7 @@
 						
 							<?php
 
-								$equipos = implode(Equipos::consultarNombreEquipo());
+								$equipos = implode(Equipo::consultarNombreEquipo());
 								echo $equipos;
 
 							?>

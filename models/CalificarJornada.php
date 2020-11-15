@@ -25,27 +25,30 @@ class CalificarJornada
         echo $option;
     }
 
-    public function golesJugador($id, $goles) {
+    public function golesJugador($id, $goles, $equipo) {
         $integrante = new Integrante();
 
         $integrante->setGoles($goles);
         $integrante->setId($id);
+        $integrante->setId_equipo($equipo);
         $integrante->golesJugador();
     }
 
-    public function tarjetasAmarillasJugador($id, $amarillas) {
+    public function tarjetasAmarillasJugador($id, $amarillas, $equipo) {
         $integrante = new Integrante();
 
         $integrante->setTarjetas_amarillas($amarillas);
         $integrante->setId($id);
+        $integrante->setId_equipo($equipo);
         $integrante->tarjetasAmarillasJugador();
     }
 
-    public function tarjetasRojasJugador($id, $rojas) {
+    public function tarjetasRojasJugador($id, $rojas, $equipo) {
         $integrante = new Integrante();
 
         $integrante->setTarjetas_rojas($rojas);
         $integrante->setId($id);
+        $integrante->setId_equipo($equipo);
         $integrante->tarjetasRojasJugador();
     }
 
@@ -78,16 +81,6 @@ class CalificarJornada
             );
         ";
 
-            // echo         $idLocal.', '.
-            // $idVisitante.', '.
-            // $golesLocal.', '.
-            // $golesVisitante.', '.
-            // $tarAmaVisitante.', '.
-            // $tarAmaLocal.', '.
-            // $tarRojVisitante.', '.
-            // $tarRojLocal.', '.
-            // $idJornada;
-
         $query = $conexion->prepare($sql);
         
         $query->bindValue(":idLocal", $idLocal, PDO::PARAM_INT);
@@ -119,56 +112,20 @@ class CalificarJornada
 
         return $resultado;
     }
-
-    // public function golesEquipoLocal($id, $goles) {
-    //     $equipoLocal = new EquipoLocal();
-
-    //     $equipoLocal->setGoles_local($goles);
-    //     $equipoLocal->setIdLocal($id);
-    //     $equipoLocal->golesEquipoLocal();
-    // }
-
-    // public function tarjetasAmarillasEquipoLocal($id, $goles) {
-    //     $equipoLocal = new EquipoLocal();
-
-    //     $equipoLocal->setTarjetas_amarillas_local($goles);
-    //     $equipoLocal->setIdLocal($id);
-    //     $equipoLocal->tarjetasAmarillasEquipoLocal();
-    // }
-
-    // public function tarjetasRojasEquipoLocal($id, $rojas) {
-    //     $equipoLocal = new EquipoLocal();
-
-    //     $equipoLocal->setTarjetas_rojas_local($rojas);
-    //     $equipoLocal->setIdLocal($id);
-    //     $equipoLocal->tarjetasRojasEquipoLocal();
-    // }
-
-    // public function golesEquipoVisitante($id, $goles) {
-    //     $equipoVisitante = new EquipoVisitante();
-
-    //     $equipoVisitante->setGoles_visitante($goles);
-    //     $equipoVisitante->setIdVisitante($id);
-    //     $equipoVisitante->golesEquipoVisitante();
-    // }
-
-    // public function tarjetasAmarillasEquipoVisitante($id, $amarillas) {
-    //     $equipoVisitante = new EquipoVisitante();
-
-    //     $equipoVisitante->setTarjetas_amarillas_visitante($amarillas);
-    //     $equipoVisitante->setIdVisitante($id);
-    //     $equipoVisitante->tarjetasAmarillasEquipoVisitante();
-    // }
-
-    // public function tarjetasRojasEquipoVisitante($id, $rojas) {
-    //     $equipoVisitante = new EquipoVisitante();
-
-    //     $equipoVisitante->setTarjetas_rojas_visitante($rojas);
-    //     $equipoVisitante->setIdVisitante($id);
-    //     $equipoVisitante->tarjetasRojasEquipoVisitante();
-    // }
- 
     
+    public function verificarId($tab, $idValidar) {
+        if ($tab == null || $tab == "") {
+            return false;
+        }
+
+        $jornada = new Jornada();
+
+        $id = (int) $idValidar;
+
+        $resultado = $jornada->verificarId($tab, $id);
+
+        return $resultado;
+    }
 }
 
 ?>

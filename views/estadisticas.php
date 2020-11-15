@@ -2,7 +2,7 @@
     //IMPORTAR VERIFICADORES DE ACCESO
     include_once "../auth/Session.php" ;
     include_once "../auth/AuthSession.php";
-	include_once "../models/Equipos.php";
+	include_once "../models/Equipo.php";
 
     if(AuthSession::getUsuario() == null){
         header('Location: login.php');
@@ -65,7 +65,7 @@
                         <tbody>
                             <?php
 
-                                $topGol = implode(Equipos::consultarTopGol());
+                                $topGol = implode(Equipo::consultarTopGol());
                                 echo $topGol;
 
                             ?>
@@ -88,7 +88,7 @@
                         <tbody>
                             <?php
 
-                                $topAma = implode(Equipos::consultarTopTarAma());
+                                $topAma = implode(Equipo::consultarTopTarAma());
                                 echo $topAma;
 
                             ?>
@@ -111,7 +111,7 @@
                         <tbody>
                             <?php
 
-                                $topRoj = implode(Equipos::consultarTopTarRoj());
+                                $topRoj = implode(Equipo::consultarTopTarRoj());
                                 echo $topRoj;
 
                             ?>

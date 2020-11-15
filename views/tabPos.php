@@ -2,7 +2,7 @@
     //IMPORTAR VERIFICADORES DE ACCESO
     include_once "../auth/Session.php" ;
     include_once "../auth/AuthSession.php";
-	include_once "../models/Equipos.php";
+	include_once "../models/Equipo.php";
 
     if(AuthSession::getUsuario() == null){
         header('Location: login.php');
@@ -23,7 +23,7 @@
 ?>
 
 <script type="text/javascript">
-    var arregloDT = <?php echo json_encode(Equipos::consultarTablaPos()); ?>;
+    var arregloDT = <?php echo json_encode(Equipo::consultarTablaPos()); ?>;
     console.log(arregloDT);
 </script>
 

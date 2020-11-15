@@ -2,7 +2,7 @@
 
 include_once "../conexion/Conexion.php";
 
-class Equipos
+class Equipo
 {
 
     private $id;

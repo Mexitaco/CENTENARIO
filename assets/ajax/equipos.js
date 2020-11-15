@@ -4,6 +4,7 @@ var table;
 $(document).ready(function(){
 
     var t = 'Partidos';
+    var cont = 0;
 
     table = $('#tablaJornadaEquipo').DataTable( {
         "data": arregloDT,
@@ -32,7 +33,7 @@ $(document).ready(function(){
         initComplete: function () {
             this.api().columns([ 0 ]).every( function () {
                 var column = this;
-                var select = $('<select style="width: 80%; margin: 0px 5px;"><option value="">Filtro Jornada</option></select>')
+                var select = $('<select class="form-control" style="width: 80%; margin-left: 15px;"><option value="">Filtro Jornada</option></select>')
                     .appendTo( $(column.header()).empty() )
                     .on( 'change', function () {
                         var val = $.fn.dataTable.util.escapeRegex(
@@ -50,7 +51,8 @@ $(document).ready(function(){
                           '</option>'
                         )
                     } else {
-                        select.append('<option value="'+d+'">'+d+'</option>')
+                        cont++;
+                        select.append('<option value="'+cont+'">'+cont+'</option>')
                     }
                 });
             });

@@ -225,6 +225,6 @@
 <?php
 	include_once "components/footer.php"; //IMPRIMIR FOOTER
 ?>
-<script src="../assets/ajax/caljornada.js"></script>
+<script src="../assets/ajax/calJornada.js"></script>
 </body>
 </html>

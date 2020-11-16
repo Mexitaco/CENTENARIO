@@ -104,9 +104,9 @@ class Equipo
     public static function consultarTopGol(){
         $conexion = new Conexion();
         $sql = '
-            SELECT * FROM(SELECT eq.nombre_equipo as Equipo,inte.num_camisa as Numero,SUM(inte.goles)
-            as Goles FROM integrantes inte INNER JOIN equipos eq ON eq.id = inte.id GROUP by inte.id )
-            as b ORDER BY Goles DESC LIMIT 0,5
+            SELECT eq.nombre_equipo as Equipo, inte.num_camisa as Numero, inte.goles
+            as Goles FROM integrantes inte INNER JOIN equipos eq 
+            ON eq.id = inte.id_equipo ORDER BY Goles DESC LIMIT 0,5
         ';
             
         $query = $conexion->prepare($sql);
@@ -135,10 +135,10 @@ class Equipo
     public static function consultarTopTarAma(){
         $conexion = new Conexion();
         $sql = '
-            SELECT * FROM(SELECT eq.nombre_equipo as Equipo,inte.num_camisa as
-            Numero,SUM(inte.tarjetas_amarillas) as tarjetas_amarillas FROM
-            integrantes inte INNER JOIN equipos eq ON eq.id = inte.id GROUP by inte.id )
-            as b ORDER BY tarjetas_amarillas DESC LIMIT 0,5
+            SELECT eq.nombre_equipo as Equipo,inte.num_camisa as
+            Numero,inte.tarjetas_amarillas as tarjetas_amarillas FROM
+            integrantes inte INNER JOIN equipos eq ON eq.id = inte.id_equipo
+            ORDER BY tarjetas_amarillas DESC LIMIT 0,5
         ';
             
         $query = $conexion->prepare($sql);
@@ -167,10 +167,10 @@ class Equipo
     public static function consultarTopTarRoj(){
         $conexion = new Conexion();
         $sql = '
-            SELECT * FROM(SELECT eq.nombre_equipo as Equipo,inte.num_camisa as 
-            Numero,SUM(inte.tarjetas_rojas) as tarjetas_rojas FROM
-            integrantes inte INNER JOIN equipos eq ON eq.id = inte.id GROUP by inte.id )
-            as b ORDER BY tarjetas_rojas DESC LIMIT 0,5
+            SELECT eq.nombre_equipo as Equipo, inte.num_camisa as 
+            Numero, inte.tarjetas_rojas as tarjetas_rojas FROM
+            integrantes inte INNER JOIN equipos eq 
+            ON eq.id = inte.id_equipo  ORDER BY tarjetas_rojas DESC LIMIT 0,5
         ';
             
         $query = $conexion->prepare($sql);

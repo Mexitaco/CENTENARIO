@@ -78,6 +78,8 @@ $(document).ready(function(){
         "sLengthSelect": "form-control"
     });
 
+    var t = 'Pagos realizados';
+
     // tablaUsuarios ES EL ID DE LA TABLA A LA QUE LE METEREMOS TODA LA INFORMACIÓN
     // arregloDT TIENE LA INFORMACIÓN QUE QUEREMOS MOSTRAR
     table = $('#tablaFinanzas').DataTable( {
@@ -105,9 +107,23 @@ $(document).ready(function(){
         },
         "order": [[ 0, "asc" ]],
         responsive: true,
-        dom: "<'row'<'col-sm-12 mx-1'l><'col-sm-12 mx-1'f>>" +
+        dom: "<'row'<'col-sm-12 mx-1'l><'col-sm-12 btn-action mx-1'B><'col-sm-12 mx-1'f>>" +
         "<'row'<'col-sm-12'tr>>" +
         "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+        buttons: [
+            {
+                extend: 'print',
+                title: t
+            },
+            {
+                extend: 'pdf',
+                title: t
+            },
+            {
+                extend: 'excel',
+                title: t
+            }
+        ]
     });
     
 });

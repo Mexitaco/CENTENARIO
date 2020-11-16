@@ -72,14 +72,14 @@ class Usuario
                 $usuario = new Usuario();
                 $usuario->initData($res);
                 $_SESSION["usuario"] = json_encode(ConvertJSON::convertUsuario($usuario));
-                return ["success" => true, "message" => "Sesión iniciada"];
+                return ["success" => true, "message" => "Sesión iniciada", "cont" => 0];
             }
             else{
-                return ["success" => false, "message" => "El usuario o la contraseña son incorrectos"];
+                return ["success" => false, "message" => "El usuario o la contraseña son incorrectos", "cont" => 1];
             }
         }
 
-        return ["success" => false, "message" => "El usuario o la contraseña son incorrectos"];
+        return ["success" => false, "message" => "El usuario o la contraseña son incorrectos", "cont" => 1];
     }
 
     public function delete() {

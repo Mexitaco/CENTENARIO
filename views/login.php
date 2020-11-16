@@ -57,7 +57,7 @@
 			</div>
 			<input type="hidden" name="iniciarSesion" value="1">
 			<div class="login-buttons">
-				<button type="submit" class="btn btn-success btn-block btn-lg">
+				<button type="submit" class="btn btn-cen btn-lg">
 					Enviar
 				</button>
 			</div>

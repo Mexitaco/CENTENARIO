@@ -127,10 +127,3 @@ button:focus, a:focus {
   column-gap: 5%;
   
 }
-
-.btn-action {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}

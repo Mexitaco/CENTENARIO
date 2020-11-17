@@ -31,6 +31,7 @@
                                 </ul>
                             </li>
                             <li><a href="finanzas.php">Finanzas</a></li>
+                            <li><a href="avisos.php">Avisos</a></li>
                             <li><a href="login.php?cerrar_session=cerrar">Cerrar Sesión</a></li>
                     </ul> <!-- /.main_menu -->
             </div> <!-- /.responsive_menu -->
@@ -66,6 +67,7 @@
                 </ul>
             </li>
         <li><a href="finanzas.php">Finanzas</a></li>
+        <li><a href="avisos.php">Avisos</a></li>
         <li><a href="login.php?cerrar_session=cerrar">Cerrar Sesión</a></li>
     </ul> <!-- /.main_menu -->
 </div> <!-- /.responsive_menu -->

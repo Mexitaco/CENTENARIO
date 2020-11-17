@@ -134,3 +134,10 @@ button:focus, a:focus {
   border-color: #06522c;
   color: white;
 }
+
+.btn-action {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

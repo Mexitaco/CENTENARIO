@@ -400,7 +400,7 @@ class Equipo
             return ["success" => true, "message" => "Equipo actualizado"];
         }
 
-		return ["error" => true, "message" => "Ocurrió un error insesperado"];
+		return ["error" => true, "message" => "El nombre es igual"];
       	
 		} catch (Exception $e) {
 		 	return ["success" => false, "message" => "Ocurrió un error inesperado al insertar los datos",

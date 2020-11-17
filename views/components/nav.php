@@ -23,7 +23,7 @@
                                 </ul>
                             </li>
                             <li><a href="estadisticas.php">Estadísticas</a></li>
-                            <li><a href="conEquipo.php">Equipo</a></li>
+                            <li><a href="equipos.php">Equipos</a></li>
                             <li><a href="conJor.php">Jornada</a>
                                 <ul>
                                     <li><a href="conJor.php">Consultar Jornada</a></li>
@@ -58,7 +58,7 @@
                 </ul>
             </li>
             <li><a href="estadisticas.php">Estadísticas</a></li>
-            <li><a href="conEquipo.php">Equipo</a></li>
+            <li><a href="equipos.php">Equipos</a></li>
             <li><a href="conJor.php">Jornada</a>
                 <ul>
                     <li><a href="conJor.php">Consultar Jornada</a></li>

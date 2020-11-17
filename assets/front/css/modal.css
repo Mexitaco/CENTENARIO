@@ -9,6 +9,7 @@ button:focus, a:focus {
 
 .modal {
     text-align: center;
+    z-index: 99999;
   }
   
   @media screen and (min-width: 768px) { 
@@ -126,4 +127,10 @@ button:focus, a:focus {
   align-items: center;
   column-gap: 5%;
   
+}
+
+.btn-cente {
+  background-color: #0c8147;
+  border-color: #06522c;
+  color: white;
 }

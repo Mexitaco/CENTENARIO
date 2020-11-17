@@ -29,7 +29,7 @@
 		PERO ANTES USUAMOS EL MÉTODO CONSULTAR PARA TRAER LA INFORMACIÓN Y CONVERTIRLA
 		EN UN OBJETO JSON PARA QUE EL DATA TABLE PUEDA MOSTRARLO
 	*/
-	var arregloDT = <?php echo json_encode(Jornada::consultaJornada()); ?>;
+	var arregloDT = <?php echo json_encode(Equipo::consultarEquipos()); ?>;
 	console.log(arregloDT);
 
 	</script>
@@ -68,16 +68,27 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12">
+					<div class="form-inline" style="margin: 0 0 50px 20px;">
+						<label class="bold" for="nuevo-equipo">Nuevo Equipo </label>
+						<button type="button" class="new-equipo btn btn-primary btn-lg" data-toggle="modal" 
+							title="Crear equipo" id="nuevo-equipo" data-target="#modEquipo" style="margin-left: 45px;">
+							Abrir
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
 					<div class="table-responsive">
-						<table id="tablaJornadaEquipo" class="table" cellspacing="2" width="100%">
+						<table id="equipo-consulta" class="table" cellspacing="2" width="100%">
 							<thead>
 								<tr>
-									<th style="color:#FFFFFF";>Número de Jornada</th>
-									<th style="color:#FFFFFF";>Horario</th>
-									<th style="color:#FFFFFF";>Local</th>
-									<th style="color:#FFFFFF";>Visitante</th>
-									<th style="color:#FFFFFF";>Cancha</th>
-									<th style="color:#FFFFFF";>Acción</th>
+									<th style="color:#FFFFFF";>Equipo</th>
+									<th style="color:#FFFFFF";>Partidos ganados</th>
+									<th style="color:#FFFFFF";>Partidos perdidos</th>
+									<th style="color:#FFFFFF";>Partidos empatados</th>
+									<th style="color:#FFFFFF";>Modificar</th>
+									<th style="color:#FFFFFF";>Historial</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -95,24 +106,25 @@
 ?>
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="modEquipo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">Añadir abono</h4>
+				<h4 class="modal-title bold" id="myModalLabel">Equipo   <small>Recuerde que sólo pueden existir 14 equipos activos</small></h4>
 			</div>
 			<div class="modal-body">
-				<form class="form-pagos">
+				<form class="form-equipo">
 					<div class="form-group">
-						<label for="abono">Abono</label>
-						<input type="number" class="form-control input-lg" id="abono" name="abono" placeholder="Ejemplo: 100" required>
+					<label id="title_modal_equipo" class="bold" for=""></label>
+						<input id="nombre_equipo" name="nombre_equipo" value="" type="text" class="form-control">
+						<input type="text" class="form-control hid" name="nom_pas_equipo" value="" required>
 					</div>
 					<div class="form-group">
-						<input type="number" id="equipo" name="equipo" class="equipo" style="display: none;">
+						<input type="text" class="form-control hid mod_equipo" name="mod_equipo" value="" required>
 					</div>
 					<div class="text-right">
-						<button type="submit" class="btn btn-primary btn-lg">Enviar</button>
+						<button type="submit" class="btn btn-primary btn-lg mod_equipo">Enviar</button>
 					</div>
 				</form>
 			</div>

@@ -12,7 +12,7 @@ class Equipo
     private $partidos_emp;
     private $goles_favor;
     private $goles_contra;
-    private $num_jornada;
+    private $nuevo_equipo;
 
     public function getId(){
         return $this->id;
@@ -70,12 +70,12 @@ class Equipo
         $this->goles_contra = $goles_contra;
     }
 
-    public function getNum_jornada(){
-        return $this->num_jornada;
+    public function getNuevo_equipo(){
+        return $this->nuevo_equipo;
     }
 
-    public function setNum_jornada($num_jornada){
-        $this->num_jornada = $num_jornada;
+    public function setNuevo_equipo($nuevo_equipo){
+        $this->nuevo_equipo = $nuevo_equipo;
     }
 
     public static function consultarNombreEquipo(){
@@ -232,6 +232,180 @@ class Equipo
         }
 
         return $resultados;
+	}
+
+    public static function consultarEquipos(){
+        $conexion = new Conexion();
+		$sql = "
+           SELECT * FROM equipos
+        ";
+			
+		$query = $conexion->prepare($sql);	
+
+        $query->execute();
+        $query = $query->fetchAll();
+        $resultados = [];
+
+        foreach ($query as $key => $value){
+
+            $historial = '
+            <a class="btn btn-primary more-info" title="Ver historial" href="histEquipo.php?id='.$value["id"].'" role="button">
+					<span class="fas fa-list-ol"></span>
+			</a>
+            ';
+
+            $modificar = '
+            <button type="button" class="new-equipo btn btn-warning more-info fas fa-pencil-alt" data-toggle="modal" 
+                title="Modificar nombre" value="'.$value['nombre_equipo'].'" data-target="#modEquipo">
+            </button>
+            ';
+
+		    $resultados[$key] = array(
+				$value['nombre_equipo'],
+				$value['partidos_ganados'],
+				$value['partidos_emp'],
+                $value['partidos_perdidos'],
+                $modificar,
+                $historial
+			);
+			
+			
+        }
+
+        return $resultados;
+    }
+
+    public static function consHistEquipo($param){
+        $conexion = new Conexion();
+        $sql = '
+            SELECT DISTINCT (SELECT nombre_equipo from equipos where id = el.idEquipo) as "local",
+            el.goles_local, el.tarjetas_amarillas_local, el.tarjetas_rojas_local, 
+            (SELECT nombre_equipo from equipos where id = ev.idEquipo) as "visitante", 
+            ev.goles_visitante, ev.tarjetas_amarillas_visitante, ev.tarjetas_rojas_visitante, 
+            j.horario, j.cancha, j.equipo_ganador from jornada j JOIN equipo_local el 
+            JOIN equipo_visitante ev on j.idLocal = el.idLocal and
+            j.idVisitante = ev.idVisitante WHERE el.idEquipo = :id OR ev.idEquipo = :id
+        ';
+			
+		$query = $conexion->prepare($sql);	
+
+        $idHistorial = (int) $param;
+
+        $query->bindValue(":id", $idHistorial, PDO::PARAM_INT);
+
+        $query->execute();
+        $total = $query->rowCount();
+        $query = $query->fetchAll();
+        $resultados = [];
+
+        if ($total > 0) {
+            
+            foreach ($query as $key => $value){
+
+                $resultados[$key] = array(
+                    $value['local'],
+                    $value['goles_local'],
+                    $value['tarjetas_amarillas_local'],
+                    $value['tarjetas_rojas_local'],
+                    $value['visitante'],
+                    $value['goles_visitante'],
+                    $value['tarjetas_amarillas_visitante'],
+                    $value['tarjetas_rojas_visitante'],
+                    $value['horario'],
+                    $value['cancha'],
+                    $value['equipo_ganador']
+                );
+                
+            }
+
+            return $resultados;
+        }
+
+        return ["error" => false, "message" => "Aún no existen jornadas"];
+
+    }
+    
+
+    public function verificarEquipo() {
+        $conexion = new Conexion();
+
+        $sql = "
+            SELECT nombre_equipo FROM equipos WHERE nombre_equipo = :nombre_equipo
+        ";
+			
+		$query = $conexion->prepare($sql);	
+
+		$query->bindValue(":nombre_equipo", $this->getNombre_equipo(), PDO::PARAM_STR);
+
+		$query->execute();
+		
+        $resultado = $query->rowCount();
+
+        if ($resultado > 0) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function crearEquipo() {
+		$conexion = new Conexion();
+
+		try {
+
+		$sql = "
+			INSERT INTO equipos VALUES(DEFAULT, :nombre_equipo, 0, 0, 0, 0, 0, 0)
+		";
+
+		$query = $conexion->prepare($sql);
+		
+		$query->bindValue(":nombre_equipo", $this->getNombre_equipo(), PDO::PARAM_STR);
+
+		$query->execute();
+
+        $resultado = $query->rowCount();
+
+        if ($resultado > 0) {
+            return ["success" => true, "message" => "Equipo añadido"];
+        }
+
+		return ["error" => true, "message" => "Ocurrió un error insesperado"];
+      	
+		} catch (Exception $e) {
+		 	return ["success" => false, "message" => "Ocurrió un error inesperado al insertar los datos",
+                  "error" => $e->getMessage(), "exception" => json_encode($e)];		
+		}
+	}
+
+
+    public function actualizarEquipo() {
+		$conexion = new Conexion();
+
+		try {
+
+		$sql = "
+			UPDATE equipos SET nombre_equipo = :nuevo_equipo WHERE nombre_equipo = :nombre_equipo
+		";
+
+		$query = $conexion->prepare($sql);
+		
+        $query->bindValue(":nombre_equipo", $this->getNombre_equipo(), PDO::PARAM_STR);
+        $query->bindValue(":nuevo_equipo", $this->getNuevo_equipo(), PDO::PARAM_STR);
+
+		$query->execute();
+
+        $resultado = $query->rowCount();
+
+        if ($resultado > 0) {
+            return ["success" => true, "message" => "Equipo actualizado"];
+        }
+
+		return ["error" => true, "message" => "Ocurrió un error insesperado"];
+      	
+		} catch (Exception $e) {
+		 	return ["success" => false, "message" => "Ocurrió un error inesperado al insertar los datos",
+                  "error" => $e->getMessage(), "exception" => json_encode($e)];		
+		}
 	}
 
 }

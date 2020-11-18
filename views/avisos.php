@@ -72,9 +72,9 @@
 						<table id="tablaAvisos" class="table" cellspacing="2" width="100%">
 							<thead>
 								<tr>
-								    <th style="color:#FFFFFF">ID</th>
-									<th style="color:#FFFFFF">Titulo</th>
+								    <th style="color:#FFFFFF">Título</th>
 									<th style="color:#FFFFFF">Mensaje</th>
+									<th style="color:#FFFFFF">Fecha</th>
 									<th style="color:#FFFFFF">Modificar</th>
 									<th style="color:#FFFFFF">Eliminar</th>
 								</tr>

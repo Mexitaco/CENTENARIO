@@ -22,14 +22,8 @@
 		include "components/css.html";   //CARGAR LOS CSS
 	?>
 
-	<script type="text/javascript">
-
-	var arregloDT = <?php echo json_encode(Aviso::consultarAvisos()); ?>;
-	console.log(arregloDT);
-
-	</script>
-
 	<script src="../assets/ajax/avisos.js"></script>
+
 </head>
 <body>
 
@@ -53,7 +47,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h1 class="cta-title"><strong>AVISOS</strong></h1>
+					<h1 class="cta-title"><strong>Avisos</strong></h1>
 				</div> <!-- /.col-md-12 -->
 			</div> <!-- /.row -->
 		</div> <!-- /.container -->

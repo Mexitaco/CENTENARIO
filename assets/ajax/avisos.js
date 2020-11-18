@@ -1,5 +1,46 @@
 var table;
 
+function getDatos() {
+        
+    var t = 'Avisos';
+
+    table = $('#tablaAvisos').DataTable( {
+        "ajax": {
+            "url": "../controllers/AvisosController.php?consulta=true",
+            "dataSrc": "",
+            "dataType": "json"
+        },
+        "pageLength": 100,
+        "order": [[ 0, "asc" ]],
+        responsive: true,
+        language: {
+            "decimal":        "",
+            "emptyTable":     "No hay información disponible en la tabla",
+            "info":           "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+            "infoEmpty":      "Mostrando 0 to 0 of 0 Entradas",
+            "infoFiltered":   "(Filtrado from _MAX_ total Entradas)",
+            "infoPostFix":    "",
+            "thousands":      ",",
+            "lengthMenu":     "Mostrar _MENU_ Entradas",
+            "loadingRecords": "Cargando...",
+            "processing":     "Procesando...",
+            "search":         "Búsqueda:",
+            "zeroRecords":    "No se encontraron registros coincidentes",
+            "paginate": {
+                "first":      "Primero",
+                "last":       "Último",
+                "next":       "Siguiente",
+                "previous":   "Previo"
+            },
+        },
+        "order": [[ 0, "asc" ]],
+        responsive: true,
+        dom: "<'row'<'col-sm-12 mx-1'l><'col-sm-12 mx-1'f>>" +
+        "<'row'<'col-sm-12'tr>>" +
+        "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+    });
+}
+
 $(document).on("click", ".btn-eliminar-avisos", function (e) {
     var id = $(this).data("id");
     console.log(id);
@@ -28,15 +69,11 @@ $(document).on("click", ".btn-eliminar-avisos", function (e) {
                         title: 'Operación exitosa',
                         message: response.message,
                         icon: 'success'
-                        })
-                        .then(function(){
-                            location.reload();
-                        }).catch(function (reason) {
-                            location.reload();
-                        });
-
-                        loader(true);
-                        return table;
+                    });
+                    
+                    loader(true);
+                    table.ajax.reload( null, false );
+                    loader(false);
                 }
                 else{
                     loader(false);
@@ -57,41 +94,8 @@ $(document).on("click", ".btn-eliminar-avisos", function (e) {
 
 
 $(document).ready(function(){
-    
-    var t = 'Avisos';
 
-    table = $('#tablaAvisos').DataTable( {
-        "data": arregloDT,
-        "pageLength": 100,
-        "order": [[ 0, "asc" ]],
-        responsive: true
-        , language: {
-            "decimal":        "",
-            "emptyTable":     "No hay información disponible en la tabla",
-            "info":           "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-            "infoEmpty":      "Mostrando 0 to 0 of 0 Entradas",
-            "infoFiltered":   "(Filtrado from _MAX_ total Entradas)",
-            "infoPostFix":    "",
-            "thousands":      ",",
-            "lengthMenu":     "Mostrar _MENU_ Entradas",
-            "loadingRecords": "Cargando...",
-            "processing":     "Procesando...",
-            "search":         "Búsqueda:",
-            "zeroRecords":    "No se encontraron registros coincidentes",
-            "paginate": {
-                "first":      "Primero",
-                "last":       "Último",
-                "next":       "Siguiente",
-                "previous":   "Previo"
-            },
-        },
-        "order": [[ 0, "asc" ]],
-        responsive: true,
-        dom: "<'row'<'col-sm-12 mx-1'l><'col-sm-12 mx-1'f>>" +
-        "<'row'<'col-sm-12'tr>>" +
-        "<'row'<'col-sm-5'i><'col-sm-7'p>>",
-    });
-   
+    getDatos();
 });
 
 $(document).on('click', '.btn-mod-aviso', function (event) {
@@ -138,14 +142,11 @@ $(document).on("click", ".btn-enviar-aviso", function (e) {
                     title: "Operación exitosa",
                     icon: 'success',
                     text: response.message
-                }).then(function(){
-                    location.reload();
-                }).catch(function (reason) {
-                    location.reload();
                 });
 
                 loader(true);
-                return table;
+                table.ajax.reload( null, false );
+                loader(false);
             }
             else {
                 swal({
@@ -168,3 +169,4 @@ $(document).on("click", ".btn-enviar-aviso", function (e) {
     });
     e.preventDefault();
 });
+

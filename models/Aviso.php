@@ -7,7 +7,7 @@ class Aviso
     private $id;
     private $titulo;
     private $mensaje;
-
+    private $fecha;
 
     public function getId(){
 		return $this->id;
@@ -31,12 +31,20 @@ class Aviso
 
 	public function setMensaje($mensaje){
 		$this->mensaje = $mensaje;
+    }
+    
+    public function getFecha(){
+		return $this->fecha;
 	}
+
+	public function setFecha($fecha){
+		$this->fecha = $fecha;
+	}
+
 
 	public static function consultarAvisos(){
         $conexion = new Conexion();
-        $sql = '
-           SELECT id, titulo, mensaje from avisos';
+        $sql = 'SELECT id, titulo, mensaje, fecha from avisos';
             
         $query = $conexion->prepare($sql);
 
@@ -66,9 +74,9 @@ class Aviso
             ';
             
             $resultados[$key] = array(
-                $value['id'],
                 $value['titulo'],
                 $value['mensaje'],
+                $value['fecha'],
                 $mod,
                 $eli
                 );
@@ -111,13 +119,18 @@ class Aviso
 
 		try {
 
-            $sql = "UPDATE avisos SET titulo=:titulo, mensaje=:mensaje WHERE id = :id;";
+            $sql = "UPDATE avisos SET titulo=:titulo, mensaje=:mensaje, fecha=:fecha WHERE id = :id;";
     
+            $formato = "Y-m-d";
+            $dia = new DateTime("now", new DateTimeZone('America/Mexico_City'));
+            $this->setFecha($dia->format($formato));
+
             $query = $conexion->prepare($sql);
             
             $query->bindValue(":id", $this->getId(), PDO::PARAM_INT);
             $query->bindValue(":titulo", $this->getTitulo(), PDO::PARAM_STR);
             $query->bindValue(":mensaje", $this->getMensaje(), PDO::PARAM_STR);
+            $query->bindValue(":fecha", $this->getFecha(), PDO::PARAM_STR);
 
             $query->execute();
 
@@ -140,12 +153,17 @@ class Aviso
 
 		try {
 
-            $sql = "INSERT INTO avisos (titulo,mensaje) VALUES (:titulo,:mensaje);";
+            $sql = "INSERT INTO avisos (titulo,mensaje,fecha) VALUES (:titulo,:mensaje,:fecha);";
 
             $query = $conexion->prepare($sql);
+
+            $formato = "Y-m-d";
+            $dia = new DateTime("now", new DateTimeZone('America/Mexico_City'));
+            $this->setFecha($dia->format($formato));
             
             $query->bindValue(":titulo", $this->getTitulo(), PDO::PARAM_STR);
             $query->bindValue(":mensaje", $this->getMensaje(), PDO::PARAM_STR);
+            $query->bindValue(":fecha", $this->getFecha(), PDO::PARAM_STR);
 
             $query->execute();
 
@@ -166,30 +184,58 @@ class Aviso
 
 
 
-    public function consultaAvisos() {
+    public static function mostrarAvisos() {
         $conexion = new Conexion();
-        $sql = '
-             SELECT * FROM avisos;
-        ';
+        $sql = 'SELECT titulo, mensaje, fecha FROM avisos';
             
         $query = $conexion->prepare($sql);
 
         $query->execute();
-          $query = $query->fetchAll();
+
+        $row = $query->rowCount();
+
+        $query = $query->fetchAll();
         
         $resultados = [];
         $i = 0;
 
         foreach ($query as $key => $value) {
 
-            $resultados[$key] = array(
-                $value['titulo'],
-                $value['mensaje']
-            );
+            $resultados[$i] = '
+                <div class="col-md-4 col-sm-4">
+                    <div class="service-box-wrap">
+                        <div class="service-icon-wrap">
+                        </div>
+                        <div class="service-cnt-wrap">
+                            <h3 class="service-title">'.$value["titulo"].'</h3>
+                            <p>'.$value["mensaje"].'</p>
+                            <p>'.$value["fecha"].'</p>
+                        </div>
+                    </div>
+                </div>
+            ';
 
+            $i++;
         }
+        
+        if ($row > 0) {
 
-        return $resultados;
+            return $resultados;
+        }
+        
+        $no_info = ['
+                <div class="col-xs-12 col-md-12 col-sm-12">
+                    <div class="service-box-wrap">
+                        <div class="service-icon-wrap">
+                        </div>
+                        <div class="service-cnt-wrap">
+                            <h3 class="service-title">NO HAY AVISOS POR EL MOMENTO</h3>
+                        </div>
+                    </div>
+                </div>
+            '];
+            
+        return $no_info;
     }
 
 }

@@ -1,5 +1,11 @@
 <?php 
 include_once "../models/Aviso.php";
+include_once "../auth/Session.php" ;
+include_once "../auth/AuthSession.php";
+
+if(AuthSession::getUsuario() == null){
+    header('Location: ../views/login.php');
+}
 
 $sw;
 
@@ -13,6 +19,10 @@ if(isset($_GET["aviso"])) {
     //echo 'aviso';
 
     $sw = 2;
+}
+
+if(isset($_GET["consulta"])){
+    $sw = 3;
 }
 
 switch ($sw) {
@@ -133,5 +143,17 @@ switch ($sw) {
         }
 
         break;
+
+        case 3:
+
+            if(isset($_GET["consulta"])){
+                $aviso = new Aviso();
+                $response = $aviso->consultarAvisos();
+
+                echo json_encode( $response);
+            }
+
+        break;
+
 }
 

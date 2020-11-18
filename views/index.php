@@ -2,6 +2,7 @@
     //IMPORTAR VERIFICADORES DE ACCESO
     include_once "../auth/Session.php" ;
     include_once "../auth/AuthSession.php";
+    include_once "../models/Aviso.php";
 
     if(AuthSession::getUsuario() == null){
         header('Location: login.php');
@@ -54,38 +55,13 @@
                 <div class="container">
                     <div class="row">
 
-                        <div class="col-md-4 col-sm-4">
-                            <div class="service-box-wrap">
-                                <div class="service-icon-wrap">
-                                </div> <!-- /.service-icon-wrap -->
-                                <div class="service-cnt-wrap">
-                                    <h3 class="service-title">¿Cada cuándo habrá nuevos avisos?</h3>
-                                    <p>Serán los mismos días que se llevaban a cabo las juntas, miércoles para las ligas juveniles y viernes para las ligas mayores.</p>
-                                </div> <!-- /.service-cnt-wrap -->
-                            </div> <!-- /.service-box-wrap -->
-                        </div> <!-- /.col-md-4 -->
+                    <?php
 
-                        <div class="col-md-4 col-sm-4">
-                            <div class="service-box-wrap">
-                                <div class="service-icon-wrap">
-                                </div> <!-- /.service-icon-wrap -->
-                                <div class="service-cnt-wrap">
-                                    <h3 class="service-title">¿Cada cuándo se actualizará la tabla de ligas?</h3>
-                                    <p>Cada 15 días en sábado a las 7:00 PM las ligas juveniles y en Domingo a las 7:00 PM las ligas mayores.</p>
-                                </div> <!-- /.service-cnt-wrap -->
-                            </div> <!-- /.service-box-wrap -->
-                        </div> <!-- /.col-md-4 -->
-
-                        <div class="col-md-4 col-sm-4">
-                            <div class="service-box-wrap">
-                                <div class="service-icon-wrap">
-                                </div> <!-- /.service-icon-wrap -->
-                                <div class="service-cnt-wrap">
-                                    <h3 class="service-title">¿Los pagos de arbitraje como se realizarán?</h3>
-                                    <p>Sera depositando a mi cuenta bancaria con el fin de evitar el constante contacto con las manos y el dinero.</p>
-                                </div> <!-- /.service-cnt-wrap -->
-                            </div> <!-- /.service-box-wrap -->
-                        </div> <!-- /.col-md-4 -->
+                        $avisos = implode("", Aviso::mostrarAvisos());
+                        echo $avisos;
+                    
+                    ?>
+                      
                     </div>
                 </div>
             </section>

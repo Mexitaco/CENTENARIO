@@ -88,6 +88,7 @@
 									<th style="color:#FFFFFF";>Partidos empatados</th>
 									<th style="color:#FFFFFF";>Modificar</th>
 									<th style="color:#FFFFFF";>Historial</th>
+									<th style="color:#FFFFFF";>Jugadores</th>
 								</tr>
 							</thead>
 							<tbody>

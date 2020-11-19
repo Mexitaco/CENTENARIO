@@ -141,3 +141,7 @@ button:focus, a:focus {
   justify-content: center;
   align-items: center;
 }
+
+.mb-5 {
+  margin-bottom: 25px;
+}

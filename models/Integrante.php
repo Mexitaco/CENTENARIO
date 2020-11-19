@@ -80,7 +80,7 @@ class Integrante
 
 	public static function obtenerJugadores($id){
         $conexion = new Conexion();
-		$sql = "SELECT id, nombre_integrante FROM integrantes WHERE id_equipo = :id ";
+		$sql = "SELECT id, nombre_integrante, num_camisa FROM integrantes WHERE id_equipo = :id  and status = 1";
 		
 		$query = $conexion->prepare($sql);
 		
@@ -96,7 +96,7 @@ class Integrante
         foreach ($query as $key => $value){
 
             $resultados[$i] ='
-                <option value="'.$value["id"].'">'.$value["nombre_integrante"].'</option>';
+                <option value="'.$value["id"].'">'.$value["nombre_integrante"].' - '.$value['num_camisa'].'</option>';
                 
             $i++;
         }
@@ -183,6 +183,110 @@ class Integrante
 		 	return ["success" => false, "message" => "Ocurrió un error inesperado al insertar los datos",
                   "error" => $e->getMessage(), "exception" => json_encode($e)];		
 		}
+	}
+
+	public function consultarIntegrantes($id){
+        $conexion = new Conexion();
+		$sql = "SELECT id, nombre_integrante, num_camisa FROM integrantes WHERE id_equipo = :id  and status = 1";
+		
+		$query = $conexion->prepare($sql);
+		
+		$query->bindValue(":id", $id);
+
+        $query->execute();
+        $query = $query->fetchAll();
+        
+        $resultados = [];
+
+		$i = 1;
+
+        foreach ($query as $key => $value){
+
+			$modificar = '
+				<button type="button" class="btn-mod-inte btn btn-warning more-info fas fa-pencil-alt" data-toggle="modal" 
+					title="Modificar nombre" 
+					data-id="'.$value['id'].'" data-nomb="'.$value['nombre_integrante'].'"
+					data-num="'.$value['num_camisa'].'" 
+					data-target="#mod-integrante">
+				</button>
+			';
+
+            $resultados[$key] = array(
+				$i,
+				$value["nombre_integrante"],
+				$value['num_camisa'],
+				$modificar
+			);
+
+			$i++;
+        }
+
+        return $resultados;
+	}
+
+	public static function verificarCamisa($idVerificar, $camisa){
+        $conexion = new Conexion();
+		$sql = "
+            SELECT num_camisa FROM integrantes WHERE id_equipo = :id
+        ";
+			
+		$query = $conexion->prepare($sql);	
+
+		$query->bindValue(":id", $idVerificar, PDO::PARAM_INT);
+		//$query->bindValue(":num_camisa", $camisa, PDO::PARAM_INT);
+
+		$query->execute();
+
+		$row = $query->rowCount();
+		
+		$resultado = false;
+
+		$query = $query->fetchAll();
+
+		$cam = (string) $camisa;
+
+		foreach ($query as $key => $value) {
+			
+			 if ($value['num_camisa'] == $cam) {
+				return false;
+			 } 
+
+			 if (!$value['num_camisa'] == $cam) {
+				return false;
+			 } 
+			
+			 return true;
+		}
+	
+	
+	}
+
+	public function actualizarIntegrante() {
+		$conexion = new Conexion();
+
+		try {
+
+		$sql = "
+			UPDATE integrantes SET nombre_integrante = :nombre_integrante,
+			num_camisa = :num_camisa WHERE id = :id
+		";
+
+		$query = $conexion->prepare($sql);
+		
+		$query->bindValue(":id", $this->getId(), PDO::PARAM_INT);
+		$query->bindValue(":nombre_integrante", $this->getNombre_integrante(), PDO::PARAM_STR);
+		$query->bindValue(":num_camisa", $this->getNum_camisa(), PDO::PARAM_INT);
+
+		$query->execute();
+
+		return ["success" => true, "message" => "Jugador actualizado"];
+      	
+		} catch (Exception $e) {
+		 	return ["success" => false, "message" => "Ocurrió un error inesperado al insertar los datos",
+                  "error" => $e->getMessage(), "exception" => json_encode($e)];		
+		}
+
+
 	}
 
 }

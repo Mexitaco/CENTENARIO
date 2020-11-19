@@ -260,13 +260,21 @@ class Equipo
             </button>
             ';
 
+            $modificar_inte = '
+            <a class="btn btn-info more-info" title="Modificar integrantes" 
+                href="integrantes.php?id='.$value["id"].'" role="button">
+				<span class="fas fa-user"></span>
+			</a>
+            ';
+
 		    $resultados[$key] = array(
 				$value['nombre_equipo'],
 				$value['partidos_ganados'],
 				$value['partidos_emp'],
                 $value['partidos_perdidos'],
                 $modificar,
-                $historial
+                $historial,
+                $modificar_inte
 			);
 			
 			

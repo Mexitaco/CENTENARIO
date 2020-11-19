@@ -35,7 +35,7 @@ function getDatos() {
         },
         "order": [[ 0, "asc" ]],
         responsive: true,
-        dom: "<'row'<'col-sm-12 mx-1'l><'col-sm-12 mx-1'f>>" +
+        dom: "<'row'<'col-sm-6 mx-1'l><'col-sm-6 mx-1'f>>" +
         "<'row'<'col-sm-12'tr>>" +
         "<'row'<'col-sm-5'i><'col-sm-7'p>>",
     });
@@ -52,40 +52,57 @@ $(document).on("click", ".btn-eliminar-avisos", function (e) {
     a.parents("tr").addClass("selected");
     swal({
         text: '¿Realmente deseas eliminar el registro?',
-        showCancelButton: true,
-        confirmButtonText: 'Aceptar',
-        cancelButtonText: 'Cancelar',
-        type: 'warning'
-    }).then(function () {
-        loader(true);
-        $.ajax({
-            url: "../controllers/AvisosController.php?eliminar=true&id="+id,
-            type: 'POST',
-            dataType: "json",
-            success: function (response) {
-                loader(false);
-                if(response.success){
-                    swal({
-                        title: 'Operación exitosa',
-                        message: response.message,
-                        icon: 'success'
-                    });
-                    
-                    loader(true);
-                    table.ajax.reload( null, false );
-                    loader(false);
-                }
-                else{
-                    loader(false);
-                    swal(response.message, '', 'info');
-                }
-                
+        buttons: {
+            cancel: {
+              text: "No",
+              value: null,
+              visible: true,
+              className: "",
+              closeModal: true,
             },
-            error: function(request, msg, error) {
-                loader(false);
-                swal('Error', 'Ocurrió un error inesperado', 'error');
+            confirm: {
+              text: "Si",
+              value: true,
+              visible: true,
+              className: "",
+              closeModal: true
             }
-        });
+          },
+        icon: 'warning'
+    }).then(function (value) {
+        loader(true);
+        console.log(value);
+        if (value == true) {
+            $.ajax({
+                url: "../controllers/AvisosController.php?eliminar=true&id="+id,
+                type: 'POST',
+                dataType: "json",
+                success: function (response) {
+                    loader(false);
+                    if(response.success){
+                        swal({
+                            title: 'Operación exitosa',
+                            message: response.message,
+                            icon: 'success'
+                        });
+                        
+                        loader(true);
+                        table.ajax.reload( null, false );
+                        loader(false);
+                    }
+                    else{
+                        loader(false);
+                        swal(response.message, '', 'info');
+                    }
+                    
+                },
+                error: function(request, msg, error) {
+                    loader(false);
+                    swal('Error', 'Ocurrió un error inesperado', 'error');
+                }
+            });
+        }
+        loader(false);
     }).catch(function () {
         a.parents("tr").removeClass("selected");
     });

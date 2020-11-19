@@ -83,18 +83,19 @@
 		<div class="container" style="padding: 0;">
 			<div class="row">
 				<div class="col-xs-5">
-					<div class="text-center calJorTitulo">
+					<div class="text-center">
 						<h1 class="bold" id="nombreEquipoLocal"></h1>
 					</div>
 				</div>
 				<div class="col-xs-2">
-					<div class="text-center calJorTitulo">
+					<div class="text-center">
 						<h4 class="bold" id="cancha" style="margin: 15px 0 0 0;"></h4>
 						<h4 class="bold" id="horario" style="margin: 15px 0 0 0;"></h4>
+						<h4 class="bold" id="num_jornada" style="margin: 15px 0 0 0;"></h4>
 					</div>
 				</div>
 				<div class="col-xs-5">
-					<div class="text-center calJorTitulo">
+					<div class="text-center">
 						<h1 class="bold" id="nombreEquipoVisitante"></h1>
 					</div>
 				</div>

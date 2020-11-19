@@ -6,7 +6,7 @@ $(document).ready(function(){
     var t = 'Partidos';
     var cont = 0;
 
-    table = $('#tablaJornadaEquipo').DataTable( {
+    equipos = $('#tablaJornadaEquipo').DataTable( {
         "data": arregloDT,
         "pageLength": 25,
         language: {
@@ -86,7 +86,7 @@ $(document).ready(function(){
 
     var t = 'Tabla de posiciones';
 
-    table = $('#tablaPosiciones').DataTable( {
+    equipos = $('#tablaPosiciones').DataTable( {
         "data": arregloDT,
         "pageLength": 100,
         language: {
@@ -136,7 +136,11 @@ $(document).ready(function(){
     var t = 'Equipos';
 
     table = $('#equipo-consulta').DataTable( {
-        "data": arregloDT,
+        "ajax": {
+            "url": "../controllers/EquipoController.php?consulta=true",
+            "dataSrc": "",
+            "dataType": "json"
+        },
         "pageLength": 100,
         language: {
             "decimal":        "",
@@ -184,7 +188,7 @@ $(document).ready(function(){
 
     var t = 'Historial equipo';
 
-    table = $('#tablaHistEquipo').DataTable( {
+    equipos = $('#tablaHistEquipo').DataTable( {
         "data": arregloDT,
         "pageLength": 100,
         language: {
@@ -265,9 +269,12 @@ $(document).on("click", ".mod_equipo", function (e) {
                     title: "Operación exitosa",
                     icon: 'success',
                     text: response.message
-                }).then(() => {
-                    location.href = "equipos.php";
                 });
+
+                loader(true);
+                console.log('no actualiza');
+                table.ajax.reload( null, false );
+                loader(false);
             }
             else {
                 swal({

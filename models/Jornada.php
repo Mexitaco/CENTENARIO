@@ -199,7 +199,7 @@ class Jornada
 			el.goles_local, el.tarjetas_amarillas_local, el.tarjetas_rojas_local,
 			(SELECT nombre_equipo from equipos where id = ev.idEquipo) as "visitante",
 			ev.goles_visitante, ev.tarjetas_amarillas_visitante, ev.tarjetas_rojas_visitante, j.horario,
-			j.cancha, j.equipo_ganador from jornada j JOIN equipo_local el JOIN equipo_visitante ev 
+			j.cancha, j.equipo_ganador, j.num_jornada from jornada j JOIN equipo_local el JOIN equipo_visitante ev 
 			on j.idLocal = el.idLocal and j.idVisitante = ev.idVisitante WHERE id = '.$verMas.'; ';
 			
 		$query = $conexion->prepare($sql);	
@@ -221,7 +221,8 @@ class Jornada
 				$value['tarjetas_rojas_visitante'],
 				$value['horario'],
 				$value['cancha'],
-				$value['equipo_ganador']
+				$value['equipo_ganador'],
+				$value['num_jornada']
 			);
 				
         }

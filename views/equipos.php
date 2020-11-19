@@ -29,8 +29,7 @@
 		PERO ANTES USUAMOS EL MÉTODO CONSULTAR PARA TRAER LA INFORMACIÓN Y CONVERTIRLA
 		EN UN OBJETO JSON PARA QUE EL DATA TABLE PUEDA MOSTRARLO
 	*/
-	var arregloDT = <?php echo json_encode(Equipo::consultarEquipos()); ?>;
-	console.log(arregloDT);
+	var arregloDT;
 
 	</script>
 

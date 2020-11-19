@@ -40,11 +40,15 @@ $(function () {
                         title: "Operación exitosa",
                         icon: 'success',
                         text: response.message
-                    }).then(() => {
-                        location.href = "finanzas.php";
                     });
+
+                    $("#myModal").modal("hide");
+                    loader(true);
+                    table.ajax.reload( null, false );
+                    loader(false);
+
                 }
-                else{
+                else {
                     swal({
                         title: "Advertencia",
                         icon: 'info',
@@ -83,7 +87,11 @@ $(document).ready(function(){
     // tablaUsuarios ES EL ID DE LA TABLA A LA QUE LE METEREMOS TODA LA INFORMACIÓN
     // arregloDT TIENE LA INFORMACIÓN QUE QUEREMOS MOSTRAR
     table = $('#tablaFinanzas').DataTable( {
-        "data": arregloDT,
+        "ajax": {
+            "url": "../controllers/PagosController.php?consulta=true",
+            "dataSrc": "",
+            "dataType": "json"
+        },
         "pageLength": 100,
         language: {
             "decimal":        "",

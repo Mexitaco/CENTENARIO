@@ -7,45 +7,63 @@ $(".form-jornada").submit(function (e) {
     var data = new FormData(form[0]);
 
     swal({
-        title: 'Reiniciar Liga',
-        text: '¿Realmente deseas crear las nuevas jornadas?',
-        icon: 'warning',
-    }).then(function () {
-        loader(true);
-        $.ajax({
-            url: "../controllers/JornadaController.php?crear-jornada=true",
-            data: data,
-            cache: false,
-            processData: false,
-            contentType: false,
-            type: 'POST',
-            dataType: 'json',
-            success: function (response) {
-                loader(false);
-                if (response.success) {
-                    swal({
-                        title: "Operación exitosa",
-                        icon: 'success',
-                        message: response.message
-                    }).then(() => {
-                        location.href = "conJor.php";
-                    });
-                } else {
-                    // console.log('hola');
-                }
+        text: '¿Realmente deseas reiniciar la liga?',
+        buttons: {
+            cancel: {
+              text: "No",
+              value: null,
+              visible: true,
+              className: "",
+              closeModal: true,
             },
-            error: function (response) {
-                loader(false);
-                //console.log(response.responseJSON.message);
-                if (response.error) {
-                    swal({
-                        title: "Error",
-                        icon: 'error',
-                        text: response.responseJSON.message
-                    });
-                }
+            confirm: {
+              text: "Si",
+              value: true,
+              visible: true,
+              className: "",
+              closeModal: true
             }
-        });
+          },
+        icon: 'warning'
+    }).then(function (value) {
+        loader(true);
+        if (value == true) {
+            $.ajax({
+                url: "../controllers/JornadaController.php?crear-jornada=true",
+                data: data,
+                cache: false,
+                processData: false,
+                contentType: false,
+                type: 'POST',
+                dataType: 'json',
+                success: function (response) {
+                    loader(false);
+                    if (response.success) {
+                        swal({
+                            title: "Operación exitosa",
+                            icon: 'success',
+                            message: response.message
+                        }).then(() => {
+                            location.href = "conJor.php";
+                        });
+                    } else {
+                        // console.log('hola');
+                    }
+                },
+                error: function (response) {
+                    loader(false);
+                    //console.log(response.responseJSON.message);
+                    if (response.error) {
+                        swal({
+                            title: "Error",
+                            icon: 'error',
+                            text: response.responseJSON.message
+                        });
+                    }
+                }
+            });
+        }
+        loader(false);
     });
 });
 

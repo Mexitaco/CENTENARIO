@@ -23,18 +23,6 @@
 		include "components/css.html";   //CARGAR LOS CSS
 	?>
 
-	<script type="text/javascript">
-
-	/*
-		ESTE ES EL ARREGLO QUE VA A CARGAR TODA LA INFO DE LAS TABLAS AL DATA TABLE,
-		PERO ANTES USUAMOS EL MÉTODO CONSULTAR PARA TRAER LA INFORMACIÓN Y CONVERTIRLA
-		EN UN OBJETO JSON PARA QUE EL DATA TABLE PUEDA MOSTRARLO
-	*/
-	var arregloDT = <?php echo json_encode(Pago::consultar()); ?>;
-	console.log(arregloDT);
-
-	</script>
-
 	<script src="../assets/ajax/pagos.js"></script>
 
 </head>

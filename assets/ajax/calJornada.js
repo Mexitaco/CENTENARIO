@@ -87,6 +87,7 @@ $(document).ready(function () {
     $('#nombreEquipoVisitante').text(resPartido[0][4]);
     $('#cancha').text(resPartido[0][9]);
     $('#horario').text(resPartido[0][8]);
+    $('#num_jornada').text('Jornada: '+resPartido[0][11]);
 });
 
 

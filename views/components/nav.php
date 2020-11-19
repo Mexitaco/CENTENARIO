@@ -15,10 +15,8 @@
                     <nav class="main-nav visible-md visible-lg">
                         <ul class="sf-menu">
                             <li><a href="index.php">Inicio</a></li>
-                            <li><a href="cateLib.php">Partida</a>
+                            <li><a href="tabPos.php">Partidos</a>
                                 <ul>
-                                    <li><a href="cateLib.php">Categoria Libre</a></li>
-                                    <li><a href="resuPar-image.php">Resultados de Partida</a></li>
                                     <li><a href="tabPos.php">Tabla de posiciones</a></li>
                                 </ul>
                             </li>
@@ -51,10 +49,8 @@
 <div class="responsive_menu">
     <ul class="main_menu">
         <li><a href="index.php">Inicio</a></li>
-            <li><a href="cateLib.php">Partida</a>
+            <li><a href="tabPos.php">Partidos</a>
                 <ul>
-                    <li><a href="cateLib.php">Categoria Libre</a></li>
-                    <li><a href="resuPar-image.php">Resultados de Partida</a></li>
                     <li><a href="tabPos.php">Tabla de posiciones</a></li>
                 </ul>
             </li>

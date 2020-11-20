@@ -224,10 +224,10 @@ class Integrante
         return $resultados;
 	}
 
-	public static function verificarCamisa($idVerificar, $camisa){
+	public function verificarCamisa($idVerificar, $camisa, $idEquipo){
         $conexion = new Conexion();
 		$sql = "
-            SELECT num_camisa FROM integrantes WHERE id_equipo = :id
+            SELECT num_camisa FROM integrantes WHERE id = :id
         ";
 			
 		$query = $conexion->prepare($sql);	
@@ -239,7 +239,7 @@ class Integrante
 
 		$row = $query->rowCount();
 		
-		$resultado = false;
+		$resultado = "";
 
 		$query = $query->fetchAll();
 
@@ -247,17 +247,59 @@ class Integrante
 
 		foreach ($query as $key => $value) {
 			
-			 if ($value['num_camisa'] == $cam) {
-				return false;
-			 } 
+			$resultado = $value['num_camisa'];
 
-			 if (!$value['num_camisa'] == $cam) {
-				return false;
-			 } 
-			
-			 return true;
+			if ($resultado == $cam) {
+				return true;
+			}
+
+			$res = $this->consultarCamisas($idEquipo, $cam);
+
+			if ($res == true) {
+				return true;
+			}
+
+			return false;
 		}
 	
+		
+	
+	}
+
+
+	public function consultarCamisas($idVerificar, $cam){
+        $conexion = new Conexion();
+		$sql = "
+            SELECT num_camisa FROM integrantes WHERE id_equipo = :id 
+        ";
+			
+		$query = $conexion->prepare($sql);	
+
+		$query->bindValue(":id", $idVerificar, PDO::PARAM_INT);
+		//$query->bindValue(":num_camisa", $camisa, PDO::PARAM_INT);
+
+		$query->execute();
+
+		$row = $query->rowCount();
+		
+		$resultado = [];
+
+		$query = $query->fetchAll();
+
+		$i = 0;
+
+		foreach ($query as $key => $value) {
+			
+			$resultado[$i] = $value['num_camisa'];
+		
+			if ($cam == $resultado[$i]) {
+				return false;
+			}
+			
+			$i++;
+		}
+	
+		return true;
 	
 	}
 

@@ -62,7 +62,7 @@ switch ($sw) {
 
                     $integrante = new Integrante();
 
-                    $flag_camisa = $integrante->verificarCamisa($id_equipo, $camisa);
+                    $flag_camisa = $integrante->verificarCamisa($id, $camisa, $id_equipo);
 
                     if ($flag_camisa == true) {
 

@@ -18,14 +18,15 @@
                             <li><a href="tabPos.php">Partidos</a>
                                 <ul>
                                     <li><a href="tabPos.php">Tabla de posiciones</a></li>
+                                    <li><a href="campeones.php">Equipos campeones</a></li>
                                 </ul>
                             </li>
                             <li><a href="estadisticas.php">Estadísticas</a></li>
                             <li><a href="equipos.php">Equipos</a></li>
                             <li><a href="conJor.php">Jornada</a>
                                 <ul>
-                                    <li><a href="conJor.php">Consultar Jornada</a></li>
-                                    <li><a href="crearJornada.php">Crear Jornada</a></li>
+                                    <li><a href="conJor.php">Consultar</a></li>
+                                    <li><a href="crearJornada.php">Opciones</a></li>
                                 </ul>
                             </li>
                             <li><a href="finanzas.php">Finanzas</a></li>
@@ -52,14 +53,15 @@
             <li><a href="tabPos.php">Partidos</a>
                 <ul>
                     <li><a href="tabPos.php">Tabla de posiciones</a></li>
+                    <li><a href="campeones.php">Equipos campeones</a></li>
                 </ul>
             </li>
             <li><a href="estadisticas.php">Estadísticas</a></li>
             <li><a href="equipos.php">Equipos</a></li>
             <li><a href="conJor.php">Jornada</a>
                 <ul>
-                    <li><a href="conJor.php">Consultar Jornada</a></li>
-                    <li><a href="crearJornada.php">Crear Jornada</a></li>
+                    <li><a href="conJor.php">Consultar</a></li>
+                    <li><a href="crearJornada.php">Opciones</a></li>
                 </ul>
             </li>
         <li><a href="finanzas.php">Finanzas</a></li>

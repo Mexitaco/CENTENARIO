@@ -1,0 +1,335 @@
+.trofeo-container {
+    width: 80%;
+    height: 500px;
+    position: relative;
+    border: 1px solid black;
+    margin: auto;
+}
+
+.lugar {
+    width: 90%;
+    height: 45%;
+    display: inline-flex;
+    border: 1px solid red;
+    margin-left: 5%;
+    margin-right: 5%;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+
+.primero {
+    background-image: url("../images/trofeo_1.png");
+    background-size: 100% 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: 120px;
+    height: 120px;
+
+    animation-name: trofeo;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes trofeo {
+    0% {
+        transform: translateY(10%);
+    }
+    50% {
+        transform: translateY(0%);
+    }
+    100% {
+        transform: translateY(10%);
+    }
+}
+
+.estrella {
+    background-image: url("../images/estrella1.png");
+    background-size: 100% 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    left: 20px;
+    top: 120px;
+
+    animation-name: estrella1;
+    animation-duration: 2.9s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    
+}
+
+@keyframes estrella1 {
+   0% {
+        opacity: 0;
+        left: -15px;
+        top: 120px;
+        transform: translate(30%,5%);
+    }
+    20% {
+        transform: translate(-30%,10%);
+    }
+    40% {
+        transform: translate(30%,5%);
+    }
+    50% {
+        opacity: 1;
+    }
+    60% {
+        transform: translate(-30%,10%);
+    }
+    80% {
+        transform: translate(30%,5%);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(0%,0%);
+        left: 0px;
+        top: 0px;
+    }
+}
+
+
+.estrella2 {
+    background-image: url("../images/estrella1.png");
+    background-size: 100% 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    left: 100px;
+    top: 35px;
+    opacity: 0;
+
+    animation-name: estrella2;
+    animation-duration: 2.7s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    
+}
+
+@keyframes estrella2 {
+   0% {
+        opacity: 0;
+        left: 100px;
+        top: 120px;
+        transform: translate(30%,5%);
+    }
+    20% {
+        transform: translate(-30%,10%);
+    }
+    40% {
+        transform: translate(30%,5%);
+    }
+    50% {
+        opacity: 1;
+    }
+    60% {
+        transform: translate(-30%,10%);
+    }
+    80% {
+        transform: translate(30%,5%);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(0%,0%);
+        left: 100px;
+        top: -40px;
+    }
+}
+
+.estrella3 {
+    background-image: url("../images/estrella1.png");
+    background-size: 100% 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    left: 70px;
+    top: 15px;
+    opacity: 0;
+
+    animation-name: estrella3;
+    animation-duration: 4s;
+    animation-timing-function: ease-in;
+    animation-iteration-count: infinite;
+    
+}
+
+@keyframes estrella3 {
+    0% {
+        opacity: 0;
+        left: 70px;
+        top: 15px;
+        transform: translate(30%,5%);
+     }
+     10% {
+        transform: scale(1.3);
+    }
+    20% {
+        transform: translate(-30%,10%);
+    }
+    30% {
+        transform: scale(0.6);
+    }
+    40% {
+        transform: translate(30%,5%);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(0.7);
+    }
+    60% {
+        transform: translate(-30%,10%);
+    }
+    70% {
+        transform: scale(1.1);
+    }
+    80% {
+        transform: translate(30%,5%);
+    }
+    90% {
+        transform: scale(0.8);
+    }
+     100% {
+        opacity: 0;
+        transform: translate(0%,0%); 
+        left: 100px;
+        top: -130px;
+     }
+ }
+
+
+ .estrella4 {
+    background-image: url("../images/estrella1.png");
+    background-size: 100% 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    left: 15px;
+    top: 30px;
+    opacity: 0;
+
+    animation-name: estrella4;
+    animation-duration: 3.2s;
+    animation-timing-function: ease-in;
+    animation-iteration-count: infinite;
+    
+}
+
+@keyframes estrella4 {
+    0% {
+        opacity: 0;
+        left: 15px;
+        top: 30px;
+        transform: translate(30%,5%);
+    }
+    10% {
+        transform: scale(1.3);
+    }
+    20% {
+        transform: translate(-30%,10%);
+    }
+    30% {
+        transform: scale(0.6);
+    }
+    40% {
+        transform: translate(30%,5%);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(0.7);
+    }
+    60% {
+        transform: translate(-30%,10%);
+    }
+    70% {
+        transform: scale(1.1);
+    }
+    80% {
+        transform: translate(30%,5%);
+    }
+    90% {
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(0%,0%);
+        left: 36px;
+        top: -100px;
+    }
+ }
+
+.primero h4 {
+    text-align: center;
+    margin-top: 125px;
+}
+
+.lugares {
+    display: inline-flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 54%;
+}
+
+.lugar2 {
+    display: flex;
+    border: 1px solid blue;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+
+.lugar3 {
+    display: flex;
+    border: 1px solid blue;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+
+.segundo {
+    background-image: url("../images/trofeo_2.png");
+    background-size: 100% 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: 120px;
+    height: 120px;
+
+    animation-name: trofeo;
+    animation-duration: 3s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.segundo h4 {
+    text-align: center;
+    margin-top: 125px;
+}
+
+.tercero {
+    background-image: url("../images/trofeo_3.png");
+    background-size: 100% 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: 120px;
+    height: 120px;
+
+    animation-name: trofeo;
+    animation-duration: 3.3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.tercero h4 {
+    text-align: center;
+    margin-top: 125px;
+}

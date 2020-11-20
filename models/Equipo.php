@@ -416,6 +416,33 @@ class Equipo
 		}
 	}
 
+    public static function equipoCampeon(){
+        $conexion = new Conexion();
+		$sql = "
+           SELECT * FROM historial_campeon
+        ";
+			
+		$query = $conexion->prepare($sql);	
+
+        $query->execute();
+        $query = $query->fetchAll();
+        $resultados = [];
+
+        foreach ($query as $key => $value){
+
+		    $resultados[$key] = array(
+                "nombre_equipo" => $value['nombre_equipo'],
+                "puntos" => $value['puntos'],
+                "lugar" => $value['lugar'],
+                "temporada" => $value['temporada']
+			);
+			
+        }
+
+        return $resultados;
+    }
+
+
 }
 
 ?>

@@ -412,6 +412,43 @@ class Api_publica
     }
 
 
+    public static function equipoCampeon(){
+        $conexion = new Conexion();
+		$sql = "
+           SELECT * FROM historial_campeon
+        ";
+			
+		$query = $conexion->prepare($sql);	
+
+        $query->execute();
+        $query = $query->fetchAll();
+        $resultados = [];
+        $cont = 0;
+        $otro = 0;
+
+        foreach ($query as $key => $value){
+
+            if ($cont <= 3) {
+             
+                $lugar[$cont++] = array(
+                    "nombre_equipo" => $value['nombre_equipo'],
+                    "puntos" => $value['puntos'],
+                );
+            }
+            
+            $resultados[$otro] = $lugar;
+                            
+            if ($cont == 3) {
+                $otro++;  
+                $lugar = [];
+                $cont=0;
+            } 
+                
+        }
+
+        return $resultados;
+    }
+
 }
 
 ?>

@@ -48,7 +48,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h1 class="cta-title"><strong>Ingresos</strong></h1>
+					<h1 class="cta-title"><strong>Finanzas</strong></h1>
 				</div> <!-- /.col-md-12 -->
 			</div> <!-- /.row -->
 		</div> <!-- /.container -->
@@ -88,6 +88,7 @@
 								<th style="color:#FFFFFF";>Abono</th>
 								<th style="color:#FFFFFF";>Total</th>
 								<th style="color:#FFFFFF";>Restante</th>
+								<th style="color:#FFFFFF";>Historial</th>
 							</tr>
 						</thead>
 						<tbody>

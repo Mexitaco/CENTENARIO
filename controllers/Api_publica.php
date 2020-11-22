@@ -35,6 +35,10 @@ if(isset($_GET["jornadaVerMas"])){
     $sw = 7;
 }
 
+if(isset($_GET["campeones"])){
+    $sw = 8;
+}
+
 switch ($sw) {
     case 1:
 
@@ -124,6 +128,19 @@ switch ($sw) {
             }
             
         break;
+
+
+    case 8:
+        if (isset($_GET['campeones'])) {
+
+            $api = new Api_publica();
+            
+            $response = $api->equipoCampeon();
+
+            echo json_encode($response);
+        }
+        
+    break;
 
 }
 

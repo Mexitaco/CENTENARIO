@@ -98,9 +98,9 @@ class Pago
             $opcional = 'WHERE id_equipo = ';
             $idVerificar = $opcional.$idVerificar;
         }
-
+        
         $sql = "
-            SELECT eq.nombre_equipo, max(pag.fecha_pago) as fecha_pago,
+            SELECT pag.id_equipo,eq.nombre_equipo, max(pag.fecha_pago) as fecha_pago,
             SUM(pag.abono) as abono, MIN(pag.total)as total,
             MIN(pag.total)-SUM(pag.abono) as Restante
             FROM equipos eq INNER JOIN pagos pag 
@@ -115,16 +115,51 @@ class Pago
 
         foreach ($query as $key => $value){
 
+            $masdetalles = '
+                <a class="btn btn-primary more-info" title="Ver Historial"
+                    href="historialPagos.php?id='.$value["id_equipo"].'" role="button" >
+                    <span class="fas fa-external-link-alt"></span>
+                </a>
+            ';
+
             $resultados[$key] = array(
                 $value['nombre_equipo'],
                 $value['fecha_pago'],
                 $value['abono'],
                 $value['total'],
-                $value['Restante']
+                $value['Restante'],
+                $masdetalles
             );
 
         }
 
+        return $resultados;
+    }
+
+
+    public static function historialPago($va){
+        $conexion = new Conexion();
+        $sql = '
+           SELECT eq.nombre_equipo, pag.fecha_pago as fecha_pago,
+            pag.abono as abono
+            FROM equipos eq INNER JOIN pagos pag 
+            ON eq.id = pag.id_equipo and eq.id = '.$va.'
+        ';
+            
+        $query = $conexion->prepare($sql);
+        $query->execute();
+        $query = $query->fetchAll();
+        
+        $resultados = [];
+        $i = 0;
+
+        foreach ($query as $key => $value){
+
+           $resultados[$key] = array(
+               $value["nombre_equipo"],
+               $value["fecha_pago"],
+               $value["abono"]);
+        }
         return $resultados;
     }
 

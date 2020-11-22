@@ -211,18 +211,18 @@ class Jornada
         foreach ($query as $key => $value){
 
 		    $resultados[$key] = array(
-				$value['local'],
-				$value['goles_local'],
-				$value['tarjetas_amarillas_local'],
-				$value['tarjetas_rojas_local'],
-				$value['visitante'],
-				$value['goles_visitante'],
-				$value['tarjetas_amarillas_visitante'],
-				$value['tarjetas_rojas_visitante'],
-				$value['horario'],
-				$value['cancha'],
-				$value['equipo_ganador'],
-				$value['num_jornada']
+				"local" => $value['local'],
+				"goles_local" => $value['goles_local'],
+				"tarjetas_amarillas_local" => $value['tarjetas_amarillas_local'],
+				"tarjetas_rojas_local" => $value['tarjetas_rojas_local'],
+				"visitante" => $value['visitante'],
+				"goles_visitante" => $value['goles_visitante'],
+				"tarjetas_amarillas_visitante" => $value['tarjetas_amarillas_visitante'],
+				"tarjetas_rojas_visitante" => $value['tarjetas_rojas_visitante'],
+				"horario" => $value['horario'],
+				"cancha" => $value['cancha'],
+				"equipo_ganador" => $value['equipo_ganador'],
+				"num_jornada" => $value['num_jornada']
 			);
 				
         }
@@ -397,6 +397,22 @@ class Jornada
         $resultado = $query->fetch(PDO::FETCH_ASSOC);
 
         return $resultado;
+	}
+
+
+	public function terminarLiga() {
+
+		$conexion = new Conexion();
+
+		$sql = "CALL `terminar_temporada`();";
+
+		$query = $conexion->prepare($sql);
+
+
+		$query->execute();
+
+		return ["success" => true, "message" => "Temporada terminada"];
+	
 	}
 
 }

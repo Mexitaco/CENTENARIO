@@ -83,11 +83,11 @@ $(document).on('click', 'button[id]', function (event) {
 
 
 $(document).ready(function () {
-    $('#nombreEquipoLocal').text(resPartido[0][0]);
-    $('#nombreEquipoVisitante').text(resPartido[0][4]);
-    $('#cancha').text(resPartido[0][9]);
-    $('#horario').text(resPartido[0][8]);
-    $('#num_jornada').text('Jornada: '+resPartido[0][11]);
+    $('#nombreEquipoLocal').text(resPartido[0].local);
+    $('#nombreEquipoVisitante').text(resPartido[0].visitante);
+    $('#cancha').text(resPartido[0].cancha);
+    $('#horario').text(resPartido[0].horario);
+    $('#num_jornada').text('Jornada: '+resPartido[0].num_jornada);
 });
 
 

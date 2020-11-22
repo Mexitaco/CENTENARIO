@@ -60,6 +60,19 @@
 
 	<section class="light-content services">
 		<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="filtro-ganador">
+					<div class="form-inline">
+						<div class="form-group">
+							<label class="bold" for="">Filtrar por temporada</label>
+							<select id="filtro_temporada" class="form-control">
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 			<div class="row">
 				<div class="col-xs-12">
                     <div class="trofeo-container">

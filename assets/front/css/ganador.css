@@ -2,7 +2,7 @@
     width: 80%;
     height: 500px;
     position: relative;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     margin: auto;
 }
 
@@ -10,7 +10,7 @@
     width: 90%;
     height: 45%;
     display: inline-flex;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     margin-left: 5%;
     margin-right: 5%;
     justify-content: flex-start;
@@ -218,7 +218,7 @@
     opacity: 0;
 
     animation-name: estrella4;
-    animation-duration: 3.2s;
+    animation-duration: 3.5s;
     animation-timing-function: ease-in;
     animation-iteration-count: infinite;
     
@@ -281,7 +281,7 @@
 
 .lugar2 {
     display: flex;
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
@@ -289,7 +289,7 @@
 
 .lugar3 {
     display: flex;
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
@@ -332,4 +332,13 @@
 .tercero h4 {
     text-align: center;
     margin-top: 125px;
+}
+
+
+.filtro-ganador {
+    display: inline-flex;
+    width: 100%;
+    height: 150px;
+    justify-content: flex-end;
+    align-items: flex-start;
 }

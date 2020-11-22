@@ -427,21 +427,31 @@ class Equipo
         $query->execute();
         $query = $query->fetchAll();
         $resultados = [];
+        $cont = 0;
+        $otro = 0;
 
         foreach ($query as $key => $value){
 
-		    $resultados[$key] = array(
-                "nombre_equipo" => $value['nombre_equipo'],
-                "puntos" => $value['puntos'],
-                "lugar" => $value['lugar'],
-                "temporada" => $value['temporada']
-			);
-			
+            if ($cont <= 3) {
+             
+                $lugar[$cont++] = array(
+                    "nombre_equipo" => $value['nombre_equipo'],
+                    "puntos" => $value['puntos'],
+                );
+            }
+            
+            $resultados[$otro] = $lugar;
+                            
+            if ($cont == 3) {
+                $otro++;  
+                $lugar = [];
+                $cont=0;
+            } 
+                
         }
 
         return $resultados;
     }
-
 
 }
 

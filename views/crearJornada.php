@@ -22,6 +22,10 @@
 		include "components/css.html";   //CARGAR LOS CSS
 	?>
 
+	<script>
+		var arregloDT;
+	</script>
+
 </head>
 <body>
 
@@ -54,22 +58,22 @@
 	<section class="light-content services" style="margin: 50px 0;">
 		<div class="container">
 			<div class="row">
-				<div class="col-xs-12">
+				<div class="col-xs-6">
 					<form class="form-jornada">
 						<div class="text-center">
 							<input type="text" class="form-control" name="jornada" value="jornada" style="display: none;">
-							<button type="submit" class="btn btn-primary btn-lg">Reiniciar liga</button>
+							<button type="submit" class="btn btn-primary btn-lg bold">Iniciar liga</button>
 						</div>
 					</form>
 				</div>
-				<!-- <div class="col-xs-6">
+				<div class="col-xs-6">
 					<div class="text-center">
 						<form class="form-terminar-jornada">
 							<input type="text" class="form-control" name="terminar" value="terminar" style="display: none;">
-							<button type="submit" class="btn btn-danger btn-lg">Terminar liga</button>
+							<button type="submit" class="btn btn-danger btn-lg bold">Terminar liga</button>
 						</form>
 					</div>
-				</div> -->
+				</div>
 			</div>
 		</div>
 	</section>

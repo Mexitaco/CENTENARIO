@@ -47,12 +47,15 @@ $(".form-jornada").submit(function (e) {
                             location.href = "conJor.php";
                         });
                     } else {
-                        // console.log('hola');
+                        swal({
+                            title: "Advertencia",
+                            icon: 'info',
+                            text: response.message
+                        });
                     }
                 },
                 error: function (response) {
                     loader(false);
-                    //console.log(response.responseJSON.message);
                     if (response.error) {
                         swal({
                             title: "Error",
@@ -68,56 +71,93 @@ $(".form-jornada").submit(function (e) {
 });
 
 $(document).ready(function () {
-    //AQUÍ BUSCA LA ETIQUETA HTML "MAIN" CON LA CLASE usuarios-section PARA SABER DONDE ESTA EL DATA TABLE
-    var section = $(".jornada-consulta");
-    if (section.get(0) == null) {
-        return;
+
+    if (arregloDT != null) {
+        $('#local_nombre').text(arregloDT[0].local);
+        $('#local_goles').text(arregloDT[0].goles_local);
+        $('#local_tarAma').text(arregloDT[0].tarjetas_amarillas_local);
+        $('#local_tarRoj').text(arregloDT[0].tarjetas_rojas_local);
+        
+        $('#horario').text(arregloDT[0].horario);
+        $('#cancha').text(arregloDT[0].cancha);
+        $('#num_jornada').text('Número de jornada: '+arregloDT[0].num_jornada);
+        $('#equipo_ganador').text('Ganador: '+arregloDT[0].equipo_ganador);
+
+        $('#visitante_nombre').text(arregloDT[0].visitante);
+        $('#visitante_goles').text(arregloDT[0].goles_visitante);
+        $('#visitante_tarAma').text(arregloDT[0].tarjetas_amarillas_visitante);
+        $('#visitante_tarRoj').text(arregloDT[0].tarjetas_rojas_visitante);
     }
 
-    var t = 'Resultado';
+});
 
-    // tablaUsuarios ES EL ID DE LA TABLA A LA QUE LE METEREMOS TODA LA INFORMACIÓN
-    // arregloDT TIENE LA INFORMACIÓN QUE QUEREMOS MOSTRAR
-    table = $('#tablaJornada').DataTable({
-        "data": arregloDT,
-        "pageLength": 100,
-        language: {
-            "decimal": "",
-            "emptyTable": "No hay información disponible en la tabla",
-            "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-            "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-            "infoFiltered": "(Filtrado from _MAX_ total Entradas)",
-            "infoPostFix": "",
-            "thousands": ",",
-            "lengthMenu": "Mostrar _MENU_ Entradas",
-            "loadingRecords": "Cargando...",
-            "processing": "Procesando...",
-            "search": "Búsqueda:",
-            "zeroRecords": "No se encontraron registros coincidentes",
-            "paginate": {
-                "first": "Primero",
-                "last": "Último",
-                "next": "Siguiente",
-                "previous": "Previo"
+
+$(".form-terminar-jornada").submit(function (e) {
+    e.preventDefault();
+
+    var form = $(".form-terminar-jornada");
+    var data = new FormData(form[0]);
+
+    swal({
+        text: '¿Realmente deseas terminar la temporada?',
+        buttons: {
+            cancel: {
+              text: "No",
+              value: null,
+              visible: true,
+              className: "",
+              closeModal: true,
             },
-        },
-        "order": [[0, "asc"]],
-        responsive: true,
-        dom: '<"col-xs-3"l><"col-xs-5"B><"col-xs-4"f>rtip',
-        buttons: [
-            {
-                extend: 'print',
-                title: t
-            },
-            {
-                extend: 'pdf',
-                title: t
-            },
-            {
-                extend: 'excel',
-                title: t
+            confirm: {
+              text: "Si",
+              value: true,
+              visible: true,
+              className: "",
+              closeModal: true
             }
-        ]
+          },
+        icon: 'warning'
+    }).then(function (value) {
+        loader(true);
+        if (value == true) {
+            $.ajax({
+                url: "../controllers/JornadaController.php?terminar-jornada=true",
+                data: data,
+                cache: false,
+                processData: false,
+                contentType: false,
+                type: 'POST',
+                dataType: 'json',
+                success: function (response) {
+                    loader(false);
+                    if (response.success) {
+                        swal({
+                            title: "Operación exitosa",
+                            icon: 'success',
+                            message: response.message
+                        }).then(() => {
+                            location.href = "conJor.php";
+                        });
+                    } else {
+                        swal({
+                            title: "Advertencia",
+                            icon: 'info',
+                            text: response.message
+                        });
+                    }
+                },
+                error: function (response) {
+                    loader(false);
+                    if (response.error) {
+                        swal({
+                            title: "Error",
+                            icon: 'error',
+                            text: response.message
+                        });
+                    }
+                }
+            });
+        }
+        loader(false);
     });
-
 });

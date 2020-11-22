@@ -61,35 +61,66 @@
         </div> <!-- /.container -->
     </section> <!-- /.cta -->
 	<!-- AQUÍ VA EL CONTENIDO DEL MENÚ PRINCIPAL -->
-	<section class="light-content services">
+	<section class="light-content services" style="margin-bottom: 50px;">
 		<div class="container">
+
+			<div class="row">
+				<div class="col-xs-12">						
+					<table>
+						<thead>
+							<tr>
+								<th style="color:#FFFFFF";>Local</th>
+								<th style="color:#FFFFFF";>Goles</th>
+								<th style="color:#FFFFFF";>Tarjetas A.</th>
+								<th style="color:#FFFFFF";>Tarjetas R.</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th id="local_nombre"></th>
+								<th id="local_goles"></th>
+								<th id="local_tarAma"></th>
+								<th id="local_tarRoj"></th>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
 			<div class="row">
 				<div class="col-xs-12">
-					<div class="jornada-consulta">
-						<div class="table-responsive">
-							<table id="tablaJornada" cellspacing="0" width="100%">
-								<thead>
-									<tr>
-										<th style="color:#FFFFFF";>Local</th>
-										<th style="color:#FFFFFF";>Goles</th>
-										<th style="color:#FFFFFF";>Tarjetas A.</th>
-										<th style="color:#FFFFFF";>Tarjetas R.</th>
-										<th style="color:#FFFFFF";>Visitante</th>
-										<th style="color:#FFFFFF";>Goles</th>
-										<th style="color:#FFFFFF";>Tarjetas A.</th>
-										<th style="color:#FFFFFF";>Tarjetas R.</th>
-										<th style="color:#FFFFFF";>Horario</th>
-										<th style="color:#FFFFFF";>Cancha</th>
-										<th style="color:#FFFFFF";>Resultado: </th>
-									</tr>
-								</thead>
-								<tbody>
-								</tbody>
-							</table>
-						</div>	
+					<div class="text-center">
+						<p id="goles" class="bold"></p>
+						<p id="cancha" class="bold"></p>
+						<p id="num_jornada" class="bold"></p>
+						<p id="equipo_ganador" class="bold">: </p>
 					</div>
 				</div>
 			</div>
+
+			<div class="row">
+				<div class="col-xs-12">
+					<table>
+						<thead>
+							<tr>
+								<th style="color:#FFFFFF";>Visitante</th>
+								<th style="color:#FFFFFF";>Goles</th>
+								<th style="color:#FFFFFF";>Tarjetas A.</th>
+								<th style="color:#FFFFFF";>Tarjetas R.</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th id="visitante_nombre"></th>
+								<th id="visitante_goles"></th>
+								<th id="visitante_tarAma"></th>
+								<th id="visitante_tarRoj"></th>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
 		</div>
 	</section>
 </main>
